@@ -1,1 +1,9 @@
+@import 'variables.scss';
+@import 'fonts.scss';
+
+$theme-colors: (
+    'primary': $brand-primary
+    'secondary': $brand-secondary
+);
+
 @import '~bootstrap/scss/bootstrap';
