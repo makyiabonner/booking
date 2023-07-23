@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+@import '../../styles/fonts.scss';
+
+.landing{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: url('../../images/canyon.jpg');
+  background-size: cover;
+  background-position: 50% 70%;
+  box-shadow: 0px 4px 4px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  height:700px;
+  width: 97%;
+  border-radius: 30px;
+  padding:20px 60px;
+  margin:20px auto;
+}
+.landingNav{
+  display: flex;
+  align-items: center;
+  height:10%;
+}
+.landingDiv{
+  width: 50%;
+}
+.landingText{
+  height:52%;
+  font-size: 80px;
+  color: rgb(255, 255, 255);
+}
+.landingDesc{
+  height:20%;
+  font-size: 40px;
+  color: rgb(228, 207, 207);
+}
+.button{
+  background-color: transparent;
+  border: none;
+  padding:4px;
+}
+.input{
+  height:60%;
+  width:20%;
+  margin-left:20px;
+  background-color: rgba(255,255,255,.4);
+  color: white;
+  border: white solid 1px;
+  border-radius: 20px;
+  padding:15px;
+}
