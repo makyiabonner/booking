@@ -1,5 +1,4 @@
 import styles from './Nav.module.scss';
-import Register from '../Register/Register';
 
 export default function Nav({ isActive, toggleActiveState }){
     
