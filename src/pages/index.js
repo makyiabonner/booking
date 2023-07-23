@@ -3,10 +3,15 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.scss'
 import Nav from '@/components/Nav/Nav'
+import Register from '@/components/Register/Register'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [ isActive, setIsActive ] = useState(false);
+  const toggleActiveState = () => setIsActive(!isActive);
+
   return (
     <>
       <Head>
@@ -15,7 +20,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav/>
+      <Register isActive={isActive} toggleActiveState={toggleActiveState}/>
+      <Nav isActive={isActive} toggleActiveState={toggleActiveState} />
       <main className={`${styles.main} ${inter.className}`}>
         <div className={styles.description}>
           <p>

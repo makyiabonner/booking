@@ -1,6 +1,7 @@
 import styles from './Nav.module.scss';
+import Register from '../Register/Register';
 
-export default function Nav(){
+export default function Nav({ isActive, toggleActiveState }){
     
     return (
         <nav className={styles.nav}>
@@ -10,7 +11,10 @@ export default function Nav(){
                     <li><p className='p-0 m-0'>Home</p></li>
                     <li><p className='p-0 m-0'>Booking</p></li>
                 </ul>
-                <a><button className='btn btn-secondary px-3 py-1 rounded'>Sign In</button></a>
+                <button 
+                    className='btn btn-secondary px-3 py-1 rounded'
+                    onClick={toggleActiveState}
+                >Sign In</button>
             </div>
     </nav>
     )
