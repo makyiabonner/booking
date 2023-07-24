@@ -1,0 +1,66 @@
+@import '../styles/variables.scss';
+
+.container{
+  width: 90%;
+  margin:120px auto;
+}
+.textSection{
+  display: flex;
+  justify-content: space-between;
+}
+.containerSubtitle{
+  font-size: 42px;
+  width:40%;
+}
+.containerDesc{
+  font-size: 25px;
+  width:27%;
+}
+.containerImgs{
+  display: flex;
+  justify-content: space-between;
+}
+.img{
+  width:500px;
+  height:300px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+}
+.imgDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: #232323;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  border-radius: 15px;
+}
+.imgDiv.appear{
+  @keyframes identifier {
+    0% {
+      height: 60%;
+    }
+    100% {
+      height:100%;
+    }
+  }
+  animation: .5s ease identifier;
+}
+.imgDiv.hidden{
+  background-color: transparent;
+  
+}
+.h1{
+  background-position: center;
+  background-size: cover;
+  font-size: 65px;
+  font-weight: bold;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}

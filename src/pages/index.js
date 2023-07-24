@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
 import Nav from '@/components/Nav/Nav'
 import Register from '@/components/Register/Register'
@@ -12,7 +12,21 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [ isActive, setIsActive ] = useState(false);
   const toggleActiveState = () => setIsActive(!isActive);
+  const [isHovered, setIsHovered] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const containerImgs = [
+    {id:1, src: '/images/resort.webp', alt: 'RESORTS'},
+    {id:2, src: '/images/apartment.webp', alt: 'APARTMENTS'},
+    {id:3, src: '/images/hotel.webp', alt: 'HOTELS'}
+  ]
   return (
     <>
       <Head>
@@ -25,6 +39,22 @@ export default function Home() {
       <Nav isActive={isActive} toggleActiveState={toggleActiveState} />
       <main className={`${styles.main} ${inter.className}`}>
         <LandingSection/>
+        <div className={styles.container}>
+          <div className={styles.textSection}>
+            <h3 className={styles.containerSubtitle}>Seamless Reservations at Your Fingertips</h3>
+            <p className={styles.containerDesc}>No more time-consuming phone calls, now you have the power to book services at your convenience.</p>
+          </div>
+          <div className={`mt-5 ${styles.containerImgs}`}>
+                {containerImgs.map((img) => {
+                      return (
+                        <div className={styles.img} style={{backgroundImage:`url(${img.src})`}}>
+                          
+                        </div>
+                      )
+                  }
+                )}
+          </div>
+        </div>
       </main>
     </>
   )
