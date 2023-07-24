@@ -11,14 +11,17 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const [ isActive, setIsActive ] = useState(false);
+  const [ activeImg, setActiveImg ] = useState(null);
   const toggleActiveState = () => setIsActive(!isActive);
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (id) => {
+    setActiveImg(id)
     setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
+    setActiveImg(null)
     setIsHovered(false);
   };
 
@@ -47,8 +50,19 @@ export default function Home() {
           <div className={`mt-5 ${styles.containerImgs}`}>
                 {containerImgs.map((img) => {
                       return (
-                        <div className={styles.img} style={{backgroundImage:`url(${img.src})`}}>
-                          
+                        <div 
+                            className={styles.img} 
+                            style={{backgroundImage:`url(${img.src})`}}
+                            onMouseOver={() => handleMouseEnter(img.id)}
+                          >
+                          <div 
+
+                            className={isHovered && activeImg === img.id
+                                        ? `${styles.imgDiv} ${styles.appear}` 
+                                        : `${styles.imgDiv} ${styles.hidden}`}
+                            onMouseOut={handleMouseLeave}>
+                            <h1 className={isHovered && activeImg === img.id? `${styles.h1}` : 'd-none'} style={{backgroundImage:`url(${img.src})`}}>{img.alt}</h1>
+                          </div>
                         </div>
                       )
                   }
