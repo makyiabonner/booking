@@ -20,9 +20,21 @@
 }
 .firstDiv{
     width: 76%;
-    height: 300px;
-    background-color: red;
+    height: fit-content;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
+    border-radius: 15px;
+}
+.imgContainer{
+    height: 400px;
+    width: 800px;
+    position: relative;
+    border-radius: 15px;
+}
+.img{
+    position: absolute;
+    clip: rect(3px,1200px,380px,10px);
     border-radius: 15px;
 }
 .secondDiv{
