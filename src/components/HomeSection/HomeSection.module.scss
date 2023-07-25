@@ -2,6 +2,7 @@
 
 .div{
     background-color: #ECC7B3;
+    padding: 90px 0;
 }
 .main{
     display: flex;
@@ -13,6 +14,10 @@
     gap: 2rem;
     width: 90%;
 }
+.firstDiv,.secondDiv,.thirdDiv{
+    box-shadow: 0 4px 16px black;
+    height: 233px;
+}
 .firstDiv{
     width: 76%;
     height: 300px;
@@ -22,13 +27,18 @@
 }
 .secondDiv{
     width: 65%;
-    height: 300px;
-    background-color: green;
+    background-size: 110%;
+    background-position: 50% 10%;
+    background-image: url('../../mobileAd.jpg');
     border-radius: 15px;
 }
 .thirdDiv{
     width: 35%;
-    height: 300px;
-    background-color: blue;
+    padding: 30px 40px;
+    background-color: white;
     border-radius: 15px;
+}
+.h1{
+    font-size: 50px;
+    font-weight: 600;
 }
