@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+
+.div{
+    background-color: #ECC7B3;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding:60px;
+    gap: 2rem;
+    width: 90%;
+}
+.firstDiv{
+    width: 76%;
+    height: 300px;
+    background-color: red;
+    background-position: center;
+    border-radius: 15px;
+}
+.secondDiv{
+    width: 65%;
+    height: 300px;
+    background-color: green;
+    border-radius: 15px;
+}
+.thirdDiv{
+    width: 35%;
+    height: 300px;
+    background-color: blue;
+    border-radius: 15px;
+}
