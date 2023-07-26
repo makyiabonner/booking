@@ -6,6 +6,7 @@ import Nav from '@/components/Nav/Nav'
 import Register from '@/components/Register/Register'
 import { useState } from 'react'
 import LandingSection from '@/components/Landing/landing'
+import HomeSection from '@/components/HomeSection/HomeSection'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -56,11 +57,11 @@ export default function Home() {
                             onMouseOver={() => handleMouseEnter(img.id)}
                           >
                           <div 
-
                             className={isHovered && activeImg === img.id
                                         ? `${styles.imgDiv} ${styles.appear}` 
                                         : `${styles.imgDiv} ${styles.hidden}`}
-                            onMouseOut={handleMouseLeave}>
+                            onMouseOut={handleMouseLeave}
+                          >
                             <h1 className={isHovered && activeImg === img.id? `${styles.h1}` : 'd-none'} style={{backgroundImage:`url(${img.src})`}}>{img.alt}</h1>
                           </div>
                         </div>
@@ -69,7 +70,9 @@ export default function Home() {
                 )}
           </div>
         </div>
+        <HomeSection/>
       </main>
+      <footer className={styles.footer}></footer>
     </>
   )
 }

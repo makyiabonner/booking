@@ -11,6 +11,16 @@
     padding:5px 60px;
     border-radius: 0 0 30px 30px;
 }
+.imgContainer{
+    position: relative;
+}
+.img{
+    position:absolute;
+    top: -60px;
+    width: auto;
+    height: 160px;
+    clip: rect(60px, 170px, 100px, 0);
+}
 .div{
     display: flex;
     align-items: center;
