@@ -1,3 +1,4 @@
+import HotelCard from '../HotelCard/hotelcard'
 import styles from '../SidePanel/sidepanel.module.scss'
 
 export default function Sidepanel(){
@@ -30,6 +31,9 @@ export default function Sidepanel(){
                     </ul>
                 </section>
             </form>
+            <section className={styles.HotelScroll}>
+                <HotelCard/>
+            </section>
         </div>
     )
 }

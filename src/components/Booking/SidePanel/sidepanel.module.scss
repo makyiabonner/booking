@@ -2,8 +2,7 @@
 
 .SidePanel{
     width: 35%;
-    height: 93.3vh;
-    background-color: red;
+    height: 62.5vh;
 }
 .SearchTab{
     display: flex;
@@ -62,4 +61,18 @@
     list-style: none;
     padding:0;
     margin: 0;
+}
+.HotelScroll{
+    background-color: green;
+    width:100%;
+    height:100%;
+    padding-top: 8px;
+    overflow-y: scroll;
+}
+.HotelScroll::-webkit-scrollbar{
+    background-color: whitesmoke;
+}
+.HotelScroll::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,.8);
+    border-radius: 20px;
 }

@@ -1,0 +1,19 @@
+@import '../../../styles/variables.scss';
+
+.card{
+    background-color: white;
+    padding: 20px;
+    display: flex;
+}
+.left,.right{
+    width: 50%;
+}
+.left{
+    display: flex;
+    flex-direction: row;
+}
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-end;
+}
