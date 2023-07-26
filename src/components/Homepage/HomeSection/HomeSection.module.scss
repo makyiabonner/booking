@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
 .div{
     background-color: #ECC7B3;
@@ -41,7 +41,7 @@
     width: 65%;
     background-size: 110%;
     background-position: 50% 10%;
-    background-image: url('../../mobileAd.jpg');
+    background-image: url('../../../mobileAd.jpg');
     border-radius: 15px;
 }
 .thirdDiv{

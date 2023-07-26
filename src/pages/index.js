@@ -2,11 +2,11 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
-import Nav from '@/components/Homepage/Nav/Nav'
+import Nav from '@/components/Nav/Nav'
 import Register from '@/components/Register/Register'
 import { useState } from 'react'
 import LandingSection from '@/components/Homepage/Landing/landing'
-import HomeSection from '@/components/HomeSection/HomeSection'
+import HomeSection from '@/components/Homepage/HomeSection/HomeSection'
 
 const inter = Inter({ subsets: ['latin'] })
 
