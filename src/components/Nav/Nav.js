@@ -4,7 +4,11 @@ export default function Nav({ isActive, toggleActiveState }){
     
     return (
         <nav className={styles.nav}>
-            <h1>Savvy</h1>
+            <div className={styles.imgContainer}>
+                <img className={styles.img}
+                    src='/images/Savvy.jpg' 
+                    alt='Savvy'/>
+            </div>
             <div className={styles.div}>
                 <ul className={styles.ul}>
                     <li><p className='p-0 m-0'>Home</p></li>
