@@ -1,21 +1,30 @@
 import styles from '../HotelCard/hotelcard.module.scss'
-
 export default function HotelCard(){
+    const testArr = [ 1,2,3,4,5,6,7,7,8,8]
     return (
         <div>
+            {testArr.map(num => (
             <div className={styles.card}>
-                <div className={styles.left}>
-                    <img src='' />
-                    <p>Hotel_name</p>
-                    <span>Location</span>
+                <div className={styles.card_left}>
+                    <img 
+                        style={{borderRadius: '15px'}}
+                        src='/images/resort.webp'
+                        width={200} 
+                    />
+                    <div className='d-flex flex-column'>
+                        <p className={styles.hotel_name}>Hotel_name</p>
+                        <span className={styles.hotel_location}>Location</span>
+                    </div>
                 </div>
-                <div className={styles.right}>
-                    <p>9.0</p>
-                    <span>nights, people</span>
-                    <p>$122</p>
-                    <button>See availability</button>
+                <div className={styles.card_right}>
+                    <p className={styles.hotel_rating}>9.0</p>
+                    <span className={styles.hotel_nights}>nights, people</span>
+                    <p className={styles.hotel_pricing}>$122</p>
+                    <button className={styles.hotel_availability}>See availability</button>
                 </div>
             </div>
+            )
+            )}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .div{
-    background-color: #ECC7B3;
+    background-color: #1A1A1A;
     padding: 90px 0;
 }
 .main{
@@ -14,34 +14,29 @@
     gap: 2rem;
     width: 90%;
 }
-.firstDiv,.secondDiv,.thirdDiv{
+.secondDiv,.thirdDiv{
     box-shadow: 0 4px 16px black;
     height: 233px;
 }
 .firstDiv{
     width: 76%;
     height: fit-content;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     border-radius: 15px;
 }
 .imgContainer{
     height: 400px;
     width: 800px;
-    position: relative;
     border-radius: 15px;
 }
 .img{
-    position: absolute;
-    clip: rect(3px,1200px,380px,10px);
+    height: 100%;
     border-radius: 15px;
 }
 .secondDiv{
     width: 65%;
     background-size: 110%;
     background-position: 50% 10%;
-    background-image: url('../../../mobileAd.jpg');
+    background-image: url('../../../../public/images/ipad.jpg');
     border-radius: 15px;
 }
 .thirdDiv{

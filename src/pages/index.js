@@ -9,7 +9,6 @@ import LandingSection from '@/components/Homepage/Landing/landing'
 import HomeSection from '@/components/Homepage/HomeSection/HomeSection'
 
 const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
   const [ isActive, setIsActive ] = useState(false);
   const [ activeImg, setActiveImg ] = useState(null);
@@ -42,29 +41,32 @@ export default function Home() {
       <Register isActive={isActive} toggleActiveState={toggleActiveState}/>
       <Nav isActive={isActive} toggleActiveState={toggleActiveState} />
       <main className={`${styles.main} ${inter.className}`}>
-        <LandingSection/>
-        <div className={styles.container}>
+          <LandingSection/>
+          <div className={styles.container}>
           <div className={styles.textSection}>
-            <h3 className={styles.containerSubtitle}>Seamless Reservations at Your Fingertips</h3>
-            <p className={styles.containerDesc}>No more time-consuming phone calls, now you have the power to book services at your convenience.</p>
+            <h3 className={styles.containerSubtitle}>Seamless Reservations at Your<br></br> Fingertips</h3>
+            <p className={styles.containerDesc}>No more time-consuming phone calls, now<br></br> you have the power to book services at<br></br> your convenience.</p>
           </div>
           <div className={`mt-5 ${styles.containerImgs}`}>
                 {containerImgs.map((img) => {
                       return (
-                        <div 
-                            className={styles.img} 
-                            style={{backgroundImage:`url(${img.src})`}}
-                            onMouseOver={() => handleMouseEnter(img.id)}
-                          >
+                        <div>
                           <div 
-                            className={isHovered && activeImg === img.id
-                                        ? `${styles.imgDiv} ${styles.appear}` 
-                                        : `${styles.imgDiv} ${styles.hidden}`}
-                            onMouseOut={handleMouseLeave}
-                          >
-                            <h1 className={isHovered && activeImg === img.id? `${styles.h1}` : 'd-none'} style={{backgroundImage:`url(${img.src})`}}>{img.alt}</h1>
+                              className={styles.img} 
+                              style={{backgroundImage:`url(${img.src})`}}
+                              onMouseOver={() => handleMouseEnter(img.id)}
+                            >
+                            <div 
+                              className={isHovered && activeImg === img.id
+                                          ? `${styles.imgDiv} ${styles.appear}` 
+                                          : `${styles.imgDiv} ${styles.hidden}`}
+                              onMouseOut={handleMouseLeave}
+                            >
+                              <h1 className={isHovered && activeImg === img.id? `${styles.h1}` : 'd-none'} style={{backgroundImage:`url(${img.src})`}}>{img.alt}</h1>
+                            </div>
                           </div>
                         </div>
+                        
                       )
                   }
                 )}
