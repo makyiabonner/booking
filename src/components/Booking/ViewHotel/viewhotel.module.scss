@@ -1,7 +1,60 @@
 @import '../../../styles/variables.scss';
 
-.ViewHotel{
-    width: 65%;
-    height: 93.3vh;
-    background-color: blue;
+.hotel_model{
+    width: 100%;
+    height: 100%;
+    background: blue;
+    overflow: hidden;
+    padding: 2rem;
+}
+.hotel_rating_div{
+    width: 25%;
+    display: flex;
+}
+.hotel_rating{
+    font-size: 3rem;
+    width: fit-content;
+    height: fit-content;
+    color: white;
+    background-color: rgba($color: #000000, $alpha: .5);
+    padding: 5px 10px;
+    border-radius: .5rem;
+    font-weight: 100;
+}
+.hotel_verdict{
+    list-style: none;
+}
+.hotel_cons,.hotel_pros{
+    font-size: 12px;
+}
+.hotel_pros{
+    color: #00aa00;
+}
+.hotel_cons{
+    color: #FF461E;
+}
+.hotel_review_div{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+.hotel_love_div{
+    display: flex;
+    justify-content: flex-end;
+    width: 25%;
+}
+.review_button{
+    background-color: transparent;
+    padding: 0;
+    height: fit-content;
+    width: fit-content;
+    color: white;
+    border:none;
+}
+.love_button{
+    width: min-content;
+    padding: 0;
+    height: fit-content;
+    background-color: transparent;
+    border: none;
 }

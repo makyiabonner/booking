@@ -28,9 +28,11 @@ export default function Booking(){
         <>
             <Register isActive={isActive} toggleActiveState={toggleActiveState}/>
             <Nav isActive={isActive} toggleActiveState={toggleActiveState} />
-            <main className='d-flex'>
+            <main className={styles.main}>
                 <Sidepanel/>
-                <Viewhotel/>
+                <div className={styles.viewhotel_div}>
+                  <Viewhotel/>
+                </div>
             </main>
         </>
     )

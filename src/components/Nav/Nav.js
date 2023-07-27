@@ -12,8 +12,8 @@ export default function Nav({ isActive, toggleActiveState }){
                 </div>
                 <div className={styles.div}>
                     <ul className={styles.ul}>
-                        <li><p className='p-0 m-0'>Home</p></li>
-                        <li><p className='p-0 m-0'>Booking</p></li>
+                        <li><a className={styles.nav_links} href='/'><p className='p-0 m-0'>Home</p></a></li>
+                        <li><a className={styles.nav_links} href='/booking'><p className='p-0 m-0'>Booking</p></a></li>
                     </ul>
                     <button 
                         className='btn btn-secondary px-3 py-1 rounded'

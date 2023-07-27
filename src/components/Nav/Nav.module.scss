@@ -6,9 +6,16 @@
     background-color: $brand-primary;
     width:100%;
     height:fit-content;
-    color:white;
     margin:auto;
     padding:10px 60px;
+}
+.nav_links{
+    text-decoration: none;
+    color: grey;
+}
+.nav_links:hover{
+    color: white;
+    transition: .5s;
 }
 .imgContainer{
     position: relative;

@@ -2,7 +2,10 @@
 
 .SidePanel{
     width: 35%;
-    height: 62.5vh;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 .SearchTab{
     display: flex;
