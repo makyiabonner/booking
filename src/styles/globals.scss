@@ -3,7 +3,7 @@
 
 $theme-colors:(
     'primary': $brand-primary,
-    'secondary': $brand-secondary
+    'secondary': $brand-secondary,
+    'info': $brand-info
 );
-
 @import '~bootstrap/scss/bootstrap';

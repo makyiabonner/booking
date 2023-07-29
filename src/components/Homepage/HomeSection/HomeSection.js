@@ -1,3 +1,4 @@
+import { ScrollParallax } from 'react-just-parallax';
 import styles from './HomeSection.module.scss';
 
 export default function HomeSection(){
@@ -6,7 +7,7 @@ export default function HomeSection(){
             <main className={styles.main}>
                 <div className={styles.firstDiv}>
                     <div className={styles.imgContainer}>
-                    <img src='/images/continueBooking.jpg' 
+                    <img src='/images/continueJourney.svg' 
                          className={styles.img}
                          alt='Continue last searched'
                          />

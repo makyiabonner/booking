@@ -1,0 +1,80 @@
+@import '../../../styles/variables.scss';
+
+.SidePanel{
+    width: 35%;
+    height: 92vh;
+    box-sizing: border-box;
+}
+.SearchTab{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    width: 100%;
+    background-color: white;
+}
+.label{
+    font-size: 13px;
+    padding:6px 15px;
+    color:rgb(99, 99, 99);
+    font-weight: 600;
+}
+.LocationText,.CheckInText,.TotalText{
+    background-color: rgb(219, 219, 219);
+    height: 1.3rem;
+    border-radius: 20px;
+    border: none;
+    padding: 15px;
+    font-size: 1rem;
+}
+.LocationText,.CheckInText,.TotalText:focus{
+    outline: none;
+
+}
+.LocationText{
+    width: 18rem;
+}
+.SubmitButton{
+    border-radius: 20px;
+    align-self: end;
+    font-size: 1rem;
+    color: white;
+    background-color: $brand-primary;
+    border: none;
+    height: fit-content;
+    padding: 5px 30px;
+}
+.SubmitButton:active{
+    background-color: #444343;
+}
+.FilterButton{
+    padding:0 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(219, 219, 219);
+}
+.FilterButton:active{
+    background-color: rgb(190, 190, 190);
+}
+.ul{
+    justify-content: space-between;
+    list-style: none;
+    padding:0;
+    margin: 0;
+}
+.HotelScroll{
+    width:100%;
+    height:75%;
+    overflow-y: scroll;
+}
+.HotelScroll::-webkit-scrollbar{
+    background-color: whitesmoke;
+    width: 10px;
+    scroll-behavior: auto;
+
+}
+.HotelScroll::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,.8);
+    border-radius: 20px;
+}
