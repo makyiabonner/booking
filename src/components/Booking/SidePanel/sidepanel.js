@@ -23,7 +23,7 @@ export default function Sidepanel(){
                             <input className={styles.TotalText} type='text' />
                         </div>
                     </div>
-                    <ul className={`${styles.ul} d-flex gap-5`}>
+                    <ul className={`${styles.ul} d-flex pb-3`}>
                         <li><button className={styles.FilterButton}>Filters</button></li>
                         <li><button className={styles.FilterButton}>Filters</button></li>
                         <li><button className={styles.FilterButton}>Filters</button></li>

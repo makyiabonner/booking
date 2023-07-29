@@ -1,7 +1,10 @@
 import styles from '../HotelCard/hotelcard.module.scss'
 export default function HotelCard(){
+    const arr = [1,1,1,1,1,1];
     return (
         <div>
+           {arr.map(num => {
+            return(
             <div className={styles.card}>
                 <div className={styles.card_left}>
                     <img 
@@ -21,6 +24,8 @@ export default function HotelCard(){
                     <button className={styles.hotel_availability}>See availability</button>
                 </div>
             </div>
+            )
+        })}
         </div>
     )
 }

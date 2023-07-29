@@ -2,9 +2,7 @@
 
 .SidePanel{
     width: 35%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+    height: 92vh;
     box-sizing: border-box;
 }
 .SearchTab{
@@ -12,7 +10,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 250px;
+    height: 25%;
     width: 100%;
     background-color: white;
 }
@@ -24,23 +22,23 @@
 }
 .LocationText,.CheckInText,.TotalText{
     background-color: rgb(219, 219, 219);
-    height: 40px;
+    height: 1.3rem;
     border-radius: 20px;
     border: none;
     padding: 15px;
-    font-size: 13px;
+    font-size: 1rem;
 }
 .LocationText,.CheckInText,.TotalText:focus{
     outline: none;
 
 }
 .LocationText{
-    width: 320px;
+    width: 18rem;
 }
 .SubmitButton{
     border-radius: 20px;
     align-self: end;
-    font-size: 20px;
+    font-size: 1rem;
     color: white;
     background-color: $brand-primary;
     border: none;
@@ -67,7 +65,7 @@
 }
 .HotelScroll{
     width:100%;
-    height:100%;
+    height:75%;
     overflow-y: scroll;
 }
 .HotelScroll::-webkit-scrollbar{

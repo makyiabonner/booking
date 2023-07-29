@@ -1,11 +1,100 @@
 @import '../../../styles/variables.scss';
 
 .hotel_model{
+    display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 100%;
-    background: blue;
-    overflow: hidden;
+    height: 92vh;
     padding: 2rem;
+}
+.review_container{
+    height: .01vh;
+}
+.toggle_reviews{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 26%;
+    background-color: transparent;
+    position: absolute;
+    overflow-x: scroll;
+    top: 0;
+    left: 0;
+    
+}
+.review_closeTab_div{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    z-index: 6;
+}
+.review_closeTab{
+    position: relative;
+    z-index: 6;
+    width: fit-content;
+    align-self: center;
+    border: none;
+    background-color: white;
+}
+.review_grid{
+    display: flex;
+    flex-direction: row;
+    z-index: 4;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height:100%;
+}
+.toggle_reviews::-webkit-scrollbar{
+    height: 8px;
+    scroll-behavior: auto;
+}
+.toggle_reviews::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,.8);
+    border-radius: 20px;
+}
+.review_card{
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    width: 700px;
+    background-color: white;
+    border-right:7px solid grey;
+    gap: 20px;
+}
+.review_cardImg{
+    border-radius: 50%;
+    margin-bottom: 5px;
+    background-color: red;
+    height: 70px;
+    width: 70px;
+}
+.review_cardDate{
+    color: gray;
+    font-size: 11px;
+}
+.review_left{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 20%;
+}
+.review_right{
+    padding: 20px;
+    width: 80%;
+}
+.review_cardProfileName{
+    font-size: 13px;
+    font-weight: bold;
+    margin: 1px;
+}
+.review_cardComment{
+    font-size: 13px;
+    height: fit-content;
 }
 .hotel_rating_div{
     width: 25%;
@@ -44,6 +133,7 @@
     width: 25%;
 }
 .review_button{
+    font-size: 13px;
     background-color: transparent;
     padding: 0;
     height: fit-content;
@@ -57,4 +147,41 @@
     height: fit-content;
     background-color: transparent;
     border: none;
+}
+.hotel_details{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: flex-end;
+    justify-self: flex-end;
+    margin: 0px 0 50px 0px;
+}
+.hotel_name{
+    font-size: 70px;
+    font-weight: 600;
+    color: $brand-primary;
+}
+.hotel_nightrates{
+    margin-bottom: 25px;
+    color: $brand-primary;
+}
+.reserve_button{
+    font-size: 30px;
+    padding: 8px 30px;
+    border: none;
+    border-radius: 10px;
+    color:$brand-primary;
+    background-color: $brand-info;
+    font-weight: bold;
+}
+.hotel_photocount{
+    justify-self: flex-end;
+    align-self: center;
+    font-size: 16px;
+    width: fit-content;
+    padding: 5px;
+    border-radius: .5rem;
+    background-color: rgba($color: #000000, $alpha: .5);
+    color: white;
+    font-weight: bold;
 }
