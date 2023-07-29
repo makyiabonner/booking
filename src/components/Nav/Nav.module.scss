@@ -7,7 +7,9 @@
     width:100%;
     height:8vh;
     margin:auto;
-    padding:10px 60px;
+    padding-left:0px;
+}
+.offcanvas_toggle{
 }
 .nav_links{
     text-decoration: none;
@@ -19,13 +21,18 @@
 }
 .imgContainer{
     position: relative;
+    height: 50px;
+    width: 280px;
+    background-color: $brand-primary;
+    top: 0;
+    right: 0;
+    overflow: hidden;
 }
 .img{
-    position:absolute;
-    top: -60px;
-    width: auto;
-    height: 160px;
-    clip: rect(60px, 170px, 100px, 0);
+    top: 0;
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
 }
 .div{
     display: flex;
