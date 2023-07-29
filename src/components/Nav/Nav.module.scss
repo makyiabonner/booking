@@ -4,12 +4,18 @@
     display: flex;
     justify-content: space-between;
     background-color: $brand-primary;
-    width:97%;
-    height:fit-content;
-    color:white;
+    width:100%;
+    height:8vh;
     margin:auto;
-    padding:5px 60px;
-    border-radius: 0 0 30px 30px;
+    padding:10px 60px;
+}
+.nav_links{
+    text-decoration: none;
+    color: grey;
+}
+.nav_links:hover{
+    color: white;
+    transition: .5s;
 }
 .imgContainer{
     position: relative;
@@ -32,4 +38,10 @@
     gap:40px;
     padding:10px;
     margin:0;
+}
+.section{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
 }
