@@ -26,7 +26,7 @@ export default function Nav({ isActive, toggleActiveState }){
                             onClick={toggleActiveState}
                         >Sign In</button>
                     </div>
-                    <Button variant="primary" className={styles.offcanvas_toggle} onClick={handleShow}>
+                    <Button variant="primary" className={`${styles.offcanvas_toggle} d-lg-none d-sm-flex`} onClick={handleShow}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
                         </svg>
@@ -36,8 +36,8 @@ export default function Nav({ isActive, toggleActiveState }){
             <Offcanvas className='bg-primary w-25' show={show} onHide={handleClose}>
                 <Offcanvas.Header closeButton>
                     <Offcanvas.Title>
-                        <div className={styles.imgContainer}>
-                            <img className={styles.img}
+                        <div className={styles.imgContainer2}>
+                            <img className={`w-75 ${styles.img}`}
                                 src='/images/Savvy.jpg' 
                                 alt='Savvy'/>
                         </div>

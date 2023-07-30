@@ -9,8 +9,6 @@
     margin:auto;
     padding-left:0px;
 }
-.offcanvas_toggle{
-}
 .nav_links{
     text-decoration: none;
     color: grey;
@@ -26,6 +24,13 @@
     background-color: $brand-primary;
     top: 0;
     right: 0;
+    overflow: hidden;
+}
+.imgContainer2{
+    height: 50px;
+    width: 160px;
+    top: 0;
+    left: 0;
     overflow: hidden;
 }
 .img{

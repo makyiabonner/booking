@@ -43,11 +43,11 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
           <LandingSection/>
           <div className={styles.container}>
-          <div className={styles.textSection}>
+          <div className={`${styles.textSection} flex-column align-items-md-center gap-3 gap-md-0 flex-md-row`}>
             <h3 className={styles.containerSubtitle}>Seamless Reservations at Your<br></br> Fingertips</h3>
             <p className={styles.containerDesc}>No more time-consuming phone calls, now<br></br> you have the power to book services at<br></br> your convenience.</p>
           </div>
-          <div className={`mt-5 ${styles.containerImgs}`}>
+          <div className={`mt-5 flex-column flex-lg-row gap-5 align-items-sm-center align-items-md-center gap-lg-0 ${styles.containerImgs}`}>
                 {containerImgs.map((img) => {
                       return (
                         <div>
