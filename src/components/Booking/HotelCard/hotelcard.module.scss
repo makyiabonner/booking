@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: column;
     align-items:flex-end;
+    justify-content: space-between;
 }
 .hotel_rating{
     color: white;
@@ -40,6 +41,7 @@
 }
 .hotel_pricing{
     font-weight: bold;
+    text-align: end;
 }
 .hotel_availability{
     border: none;

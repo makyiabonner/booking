@@ -10,7 +10,8 @@ export default function HotelCard(){
                     <img 
                         style={{borderRadius: '15px'}}
                         src='/images/resort.webp'
-                        width={200} 
+                        width={200}
+                        height={150} 
                     />
                     <div className='d-flex flex-column'>
                         <p className={styles.hotel_name}>Hotel_name</p>
@@ -19,9 +20,10 @@ export default function HotelCard(){
                 </div>
                 <div className={styles.card_right}>
                     <p className={styles.hotel_rating}>9.0</p>
-                    <span className={styles.hotel_nights}>nights, people</span>
-                    <p className={styles.hotel_pricing}>$122</p>
-                    <button className={styles.hotel_availability}>See availability</button>
+                    <div>
+                        <span className={styles.hotel_nights}>nights, people</span>
+                        <p className={styles.hotel_pricing}>$122</p>
+                    </div>
                 </div>
             </div>
             )
