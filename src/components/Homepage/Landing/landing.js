@@ -11,12 +11,22 @@ export default function LandingSection(){
                   </div>
                   <section className={`flex-column flex-lg-row gap-3 gap-lg-5 ${styles.rightSectionForm}`}>
                     <div>
-                        <label className={`${styles.label} d-block`}>Check-In / Check-Out Date</label>
-                        <input className={styles.inputText} type='text' />
+                        <label className={`${styles.label} d-block`}>Check-In</label>
+                        <input className={styles.inputText} type='date' />
                     </div>
                     <div>
-                        <label className={`${styles.label} d-block`}>Total Persons / Rooms</label>
-                        <input className={styles.inputText} type='text' />
+                        <label className={`${styles.label} d-block`}>Check-Out</label>
+                        <input className={styles.inputText} type='date' />
+                    </div>
+                    <div>
+                        <label className={`${styles.label} d-block`}>Guests</label>
+                        <select className={`w-100 ${styles.inputText}`}>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                        </select>
                     </div>
                     <button className={`m-auto mt-3 mt-lg-auto ${styles.submitButton}`}>Submit</button>
                   </section>

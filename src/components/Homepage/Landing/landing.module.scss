@@ -21,15 +21,19 @@
 }
 .rightSectionForm{
   display: flex;
-  justify-content: space-between;
   gap: 15px;
 }
 .label{
   font-size: 13px;
   margin: 0 5px 5px 15px;
 }
-.inputText,.LocationText{
+.LocationText{
   width: clamp(230px,20vw,420px);
+}
+.inputText{
+  width: 230px;
+}
+.LocationText,.inputText{
   height: 28px;
   padding:6px 18px;
   font-size: 13px;
