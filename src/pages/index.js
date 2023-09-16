@@ -54,15 +54,11 @@ export default function Home() {
                           <div 
                               className={styles.img} 
                               style={{backgroundImage:`url(${img.src})`}}
-                              onMouseOver={() => handleMouseEnter(img.id)}
                             >
                             <div 
-                              className={isHovered && activeImg === img.id
-                                          ? `${styles.imgDiv} ${styles.appear}` 
-                                          : `${styles.imgDiv} ${styles.hidden}`}
-                              onMouseOut={handleMouseLeave}
+                              className={styles.imgDiv}
                             >
-                              <h1 className={isHovered && activeImg === img.id? `${styles.h1}` : 'd-none'} style={{backgroundImage:`url(${img.src})`}}>{img.alt}</h1>
+                              <h1>{img.alt}</h1>
                             </div>
                           </div>
                         </div>
