@@ -10,37 +10,60 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    padding:60px;
+    padding-block: 6em;
     gap: 2rem;
-    width: 90%;
+    width: clamp(10em,90%,120em);
+    
+    div &:nth-child(1){
+        > div:nth-child(1){
+            background-color: blue;
+            width: 90%;
+            height: 20em;
+            border-radius: 1em;
+        }
+    }
+
+    > div:nth-child(2){
+        display: flex;
+        width: 90%;
+        gap: 2rem;
+    }
 }
+
 .secondDiv,.thirdDiv{
     box-shadow: 0 4px 16px black;
-    height: 233px;
+    height: 20em;
 }
 .firstDiv{
     width: 76%;
     height: fit-content;
     border-radius: 15px;
-}
-.imgContainer{
-    height: 400px;
-    width: 800px;
-    border-radius: 15px;
-}
-.img{
-    height: 100%;
-    border-radius: 15px;
-    
+    background-color: red;
 }
 .secondDiv{
+    display: flex;
+    justify-content: flex-end;
     width: 65%;
-    background-size: 110%;
+    background-color: #867575;
+    background-size: contain;
     background-position: 50% 10%;
-    background-image: url('../../../../public/images/ipad.jpg');
+    background-image: url('../../../../public/images/ipad.webp');
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
     border-radius: 15px;
+    box-sizing: border-box;
+    padding-right: 3em;
+    padding-top: 4em;
+
+    h1{
+        font-weight: bold;
+        font-style: italic;
+        font-size: 3.5em;
+    }
 }
 .thirdDiv{
+    display: flex;
+    align-items: center;
     width: 35%;
     padding: 30px 40px;
     background-color: white;

@@ -52,7 +52,7 @@ export default function Home() {
                       return (
                         <div>
                           <div 
-                              className={styles.img} 
+                              className={styles.reservation_category} 
                               style={{backgroundImage:`url(${img.src})`}}
                             >
                             <div 
