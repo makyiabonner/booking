@@ -73,3 +73,28 @@
     font-size: 50px;
     font-weight: 600;
 }
+@media (max-width:1760px) {
+    .main{
+        > div:nth-child(2){
+            flex-direction: column;
+            width: 90%;
+            gap: 2rem;
+        }
+    }
+    .secondDiv{
+        padding: 2em clamp(1rem,2vw,8rem);
+        background-size: 60%;
+    }
+    .secondDiv > h1{
+        font-size: clamp(1em,4.2vw,8em);
+    }
+    .thirdDiv > h1{
+        font-size: clamp(1em,6vw,3em);
+    }
+    .secondDiv,
+    .thirdDiv{
+        width: 100%;
+        height: auto;
+        min-height: 6em;
+    }
+}
