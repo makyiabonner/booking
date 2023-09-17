@@ -4,7 +4,7 @@
     background-color: #1A1A1A;
     padding: 90px 0;
 }
-.main{
+.options_section{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,10 +16,31 @@
     
     div &:nth-child(1){
         > div:nth-child(1){
-            background-color: blue;
+            background-image: url('../../../../public/images/plane.webp');
+            background-size: cover;
+            background-position: center;
+            box-shadow: inset  0 6em 7em rgb(7, 3, 14);
             width: 90%;
             height: 20em;
             border-radius: 1em;
+            
+            h1{
+                padding: .5em;
+                border-radius: 15px 0 0 0;
+                width: max-content;
+                background-color: red;
+                color: white;
+                position: relative;
+            }
+            h1:after{
+                content:'';
+                position: absolute;
+                rotate: 50deg;
+                bottom: -15%;
+                right: -1.5%;
+                height: 1.5rem;
+                width: 1.3rem;
+            }
         }
     }
 
@@ -29,72 +50,72 @@
         gap: 2rem;
     }
 }
-
-.secondDiv,.thirdDiv{
-    box-shadow: 0 4px 16px black;
-    height: 20em;
-}
-.firstDiv{
-    width: 76%;
-    height: fit-content;
-    border-radius: 15px;
-    background-color: red;
-}
-.secondDiv{
-    display: flex;
-    justify-content: flex-end;
-    width: 65%;
-    background-color: #867575;
-    background-size: contain;
-    background-position: 50% 10%;
-    background-image: url('../../../../public/images/ipad.webp');
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    border-radius: 15px;
-    box-sizing: border-box;
-    padding-right: 3em;
-    padding-top: 4em;
-
-    h1{
-        font-weight: bold;
-        font-style: italic;
-        font-size: 3.5em;
+.options_section_second_row{
+    > div{
+        box-shadow: 0 4px 16px black;
+        height: 20em;
+        border-radius: 15px;
     }
-}
-.thirdDiv{
-    display: flex;
-    align-items: center;
-    width: 35%;
-    padding: 30px 40px;
-    background-color: white;
-    border-radius: 15px;
-}
-.h1{
-    font-size: 50px;
-    font-weight: 600;
-}
-@media (max-width:1760px) {
-    .main{
-        > div:nth-child(2){
-            flex-direction: column;
-            width: 90%;
-            gap: 2rem;
+
+    > div:nth-child(1){
+        display: flex;
+        justify-content: flex-end;
+        width: 76%;
+        background-color: #867575;
+        background-size: contain;
+        background-position: 50% 10%;
+        background-image: url('../../../../public/images/ipad.webp');
+        background-position: 0% 0%;
+        background-repeat: no-repeat;
+        border-radius: 15px;
+        box-sizing: border-box;
+        padding-right: 3em;
+        padding-top: 4em;
+
+        h1{
+            font-weight: bold;
+            font-style: italic;
+            font-size: 3.5em;
         }
     }
-    .secondDiv{
-        padding: 2em clamp(1rem,2vw,8rem);
-        background-size: 60%;
+
+    > div:nth-child(2){
+        display: flex;
+        align-items: center;
+        width: 35%;
+        padding: 30px 40px;
+        background-color: white;
+        border-radius: 15px;
     }
-    .secondDiv > h1{
-        font-size: clamp(1em,4.2vw,8em);
+
+    .h1{
+        font-size: 50px;
+        font-weight: 600;
     }
-    .thirdDiv > h1{
-        font-size: clamp(1em,6vw,3em);
-    }
-    .secondDiv,
-    .thirdDiv{
-        width: 100%;
-        height: auto;
-        min-height: 6em;
+}
+
+@media (max-width:1760px) {
+    .options_section_second_row{
+        flex-direction: column;
+        width: 90%;
+        gap: 2rem;
+
+        > div:nth-child(1){
+            padding: 2em clamp(1rem,2vw,8rem);
+            background-size: 60%;
+        }
+        > div:nth-child(1) > h1{
+            font-size: clamp(1em,4.2vw,8em);
+        }
+        > div:nth-child(2) > h1{
+            font-size: clamp(1em,6vw,3em);
+            font-weight: 700;
+        }
+        > div:nth-child(1),
+        > div:nth-child(2){
+            width: 100%;
+            height: auto;
+            min-height: 6em;
+        }
     }
 }
