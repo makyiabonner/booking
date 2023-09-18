@@ -1,5 +1,12 @@
 @import '../../../styles/variables.scss';
 
+.Show_signin{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
 .options{
     background-color: #1A1A1A;
     padding: 90px 0;
@@ -88,13 +95,27 @@
         }
     }
 
-    > div:nth-child(2){
+    > .Second_row__button{
         display: flex;
         align-items: center;
         width: 35%;
         padding: 30px 40px;
         background-color: white;
         border-radius: 15px;
+        border: none;
+
+        div{
+            display: flex;
+            height: 100%;
+            width: 100%;
+            justify-content: flex-start;
+            padding-top: 1em;
+        }
+        h1{
+            text-align: start;
+            font-size: 3.5rem;
+            font-weight: 600;
+        }
     }
 
     .h1{
@@ -116,12 +137,12 @@
         > div:nth-child(1) > h1{
             font-size: clamp(1em,4.2vw,8em);
         }
-        > div:nth-child(2) > h1{
+        .Second_row__button h1{
             font-size: clamp(1em,6vw,3em);
             font-weight: 700;
         }
         > div:nth-child(1),
-        > div:nth-child(2){
+        >  .Second_row__button{
             width: 100%;
             height: auto;
             min-height: 6em;

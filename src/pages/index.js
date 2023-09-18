@@ -7,23 +7,20 @@ import Register from '@/components/Register/Register'
 import { useState } from 'react'
 import LandingSection from '@/components/Homepage/Landing/landing'
 import HomeSection from '@/components/Homepage/HomeSection/HomeSection'
+import { useEffect } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
-  const [ isActive, setIsActive ] = useState(false);
-  const [ activeImg, setActiveImg ] = useState(null);
   const toggleActiveState = () => setIsActive(!isActive);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false)
+  const [offsetY, setOffsetY]= useState(null);
+  const handleScroll = () => setOffsetY(window.pageYOffset);
 
-  const handleMouseEnter = (id) => {
-    setActiveImg(id)
-    setIsHovered(true);
-  };
+  useEffect(() =>{
+    window.addEventListener('scroll', handleScroll);
 
-  const handleMouseLeave = () => {
-    setActiveImg(null)
-    setIsHovered(false);
-  };
+    return () => window.removeEventListener('scroll',handleScroll);
+  },[]);
 
   const containerImgs = [
     {id:1, src: '/images/resort.webp', alt: 'RESORTS'},
@@ -53,12 +50,12 @@ export default function Home() {
                         <div>
                           <div 
                               className={styles.reservation_category} 
-                              style={{backgroundImage:`url(${img.src})`}}
+                              style={{backgroundImage:`url(${img.src})`, 
+                                      transform:`translateY(${offsetY * -.03}px)` 
+                                    }}
                             >
-                            <div 
-                              className={styles.imgDiv}
-                            >
-                              <h1>{img.alt}</h1>
+                            <div className={styles.imgDiv}>
+                              <h1 style={{ transform:`translateY(${offsetY * -.03}px)` }}>{img.alt}</h1>
                             </div>
                           </div>
                         </div>

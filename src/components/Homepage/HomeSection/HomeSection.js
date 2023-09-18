@@ -1,25 +1,44 @@
-import { ScrollParallax } from 'react-just-parallax';
 import styles from './HomeSection.module.scss';
-import pic from '../../../../public/images/continueJourney.svg'
+import { useState, useEffect } from 'react';
+import Register from '@/components/Register/Register';
 
 export default function HomeSection(){
+    const [ isActive, setIsActive ] = useState(false);
+    const [offsetY, setOffsetY]= useState(null);
+    const toggleActiveState = () => setIsActive(!isActive);
+    const handleScroll = () => {setOffsetY(window.pageYOffset); console.log(offsetY)};
+
+    useEffect(() =>{
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll',handleScroll);
+    },[]);
+
     return (
-        <div className={styles.options}>
-            <main className={styles.options__section}>
-                <div>
+        <>
+            <section className={styles.Show_signin}>
+                <Register isActive={isActive} toggleActiveState={toggleActiveState}/>
+            </section>
+            <div className={styles.options}>
+                <main className={styles.options__section} style={{ transform:`translateY(${offsetY * -.04}px)`}}>
                     <div>
-                        <h1>Continue last searched</h1>
+                        <div>
+                            <h1>Continue last searched</h1>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.options__section_second_row}>
-                    <div>
-                        <h1>Coming Soon<br></br>To Mobile</h1>
+                    <div className={styles.options__section_second_row}>
+                        <div>
+                            <h1>Coming Soon<br></br>To Mobile</h1>
+                        </div>
+
+                        <button className={styles.Second_row__button} onClick={toggleActiveState}>
+                            <div>
+                                <h1>Create<br></br>Your<br></br>Account</h1>
+                            </div>
+                        </button>
                     </div>
-                    <div>
-                        <h1>Create<br></br>Your<br></br>Account</h1>
-                    </div>
-                </div>
-            </main>
-        </div>
+                </main>
+            </div>
+        </>
     )
 }
