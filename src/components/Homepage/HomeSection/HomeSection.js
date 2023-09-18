@@ -4,14 +4,14 @@ import pic from '../../../../public/images/continueJourney.svg'
 
 export default function HomeSection(){
     return (
-        <div className={styles.div}>
-            <main className={styles.options_section}>
+        <div className={styles.options}>
+            <main className={styles.options__section}>
                 <div>
                     <div>
                         <h1>Continue last searched</h1>
                     </div>
                 </div>
-                <div className={styles.options_section_second_row}>
+                <div className={styles.options__section_second_row}>
                     <div>
                         <h1>Coming Soon<br></br>To Mobile</h1>
                     </div>
