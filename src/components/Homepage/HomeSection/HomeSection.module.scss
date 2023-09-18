@@ -16,30 +16,39 @@
     
     div &:nth-child(1){
         > div:nth-child(1){
-            background-image: url('../../../../public/images/plane.webp');
+            background-image: url('../../../../public/images/continueJourney.webp');
             background-size: cover;
             background-position: center;
-            box-shadow: inset  0 6em 7em rgb(7, 3, 14);
+            box-shadow: inset  33em 0em 7em rgb(7, 3, 14);
             width: 90%;
             height: 20em;
             border-radius: 1em;
             
-            h1{
-                padding: .5em;
-                border-radius: 15px 0 0 0;
-                width: max-content;
-                background-color: red;
-                color: white;
-                position: relative;
-            }
-            h1:after{
-                content:'';
-                position: absolute;
-                rotate: 50deg;
-                bottom: -15%;
-                right: -1.5%;
-                height: 1.5rem;
-                width: 1.3rem;
+            > div{
+                height: 100%;
+                width: fit-content;
+                background-color: white;
+                box-shadow: inset 0 0 1.2rem grey;
+                border-radius: 15px 0 0 15px;
+
+                h1{
+                    padding: .5em;
+                    border-radius: 15px 0 0 0;
+                    width: max-content;
+                    background-color: red;
+                    color: white;
+                    position: relative;
+                }
+                h1::after{
+                    content:'';
+                    position: absolute;
+                    rotate: 45deg;
+                    bottom: -14%;
+                    right: -2.6%;
+                    height: 1.5rem;
+                    width: 1.5rem;
+                    background-color: black;
+                }
             }
         }
     }

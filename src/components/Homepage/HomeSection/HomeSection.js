@@ -7,7 +7,9 @@ export default function HomeSection(){
         <div className={styles.div}>
             <main className={styles.options_section}>
                 <div>
-                    <h1>Continue last searched</h1>
+                    <div>
+                        <h1>Continue last searched</h1>
+                    </div>
                 </div>
                 <div className={styles.options_section_second_row}>
                     <div>
