@@ -1,12 +1,12 @@
-import styles from './Nav.module.scss';
+import styles from './Navbar.module.scss';
 import { Button, Offcanvas } from 'react-bootstrap';
 import { useState } from 'react';
 
 export default function Nav({ isActive, toggleActiveState }){
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
     return (
         <>
             <nav className={styles.nav}>

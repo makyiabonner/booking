@@ -2,10 +2,10 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Booking.module.scss'
 import Register from '@/components/Register/Register'
-import Nav from '@/components/Nav/Nav'
+import Nav from '@/components/Navbar/Navbar'
 import { useState } from 'react'
-import Sidepanel from '@/components/Booking/SidePanel/sidepanel'
-import Viewhotel from '@/components/Booking/ViewHotel/viewhotel'
+import Sidepanel from '@/components/BookingPage/SidePanel/sidepanel'
+import Viewhotel from '@/components/BookingPage/ViewHotel/viewhotel'
 
 const inter = Inter({ subsets: ['latin'] })
 

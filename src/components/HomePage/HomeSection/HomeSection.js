@@ -4,9 +4,9 @@ import Register from '@/components/Register/Register';
 
 export default function HomeSection(){
     const [ isActive, setIsActive ] = useState(false);
-    const [offsetY, setOffsetY]= useState(null);
+    const [ offsetY, setOffsetY ]= useState(null);
     const toggleActiveState = () => setIsActive(!isActive);
-    const handleScroll = () => {setOffsetY(window.pageYOffset); console.log(offsetY)};
+    const handleScroll = () => setOffsetY(window.pageYOffset);
 
     useEffect(() =>{
         window.addEventListener('scroll', handleScroll);
@@ -16,7 +16,7 @@ export default function HomeSection(){
 
     return (
         <>
-            <section className={styles.Show_signin}>
+            <section className={isActive? `${styles.Show_signin}` : 'd-none'}>
                 <Register isActive={isActive} toggleActiveState={toggleActiveState}/>
             </section>
             <div className={styles.options}>

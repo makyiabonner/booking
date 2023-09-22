@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import HotelCard from '../HotelCard/hotelcard'
-import styles from '../ViewHotel/viewhotel.module.scss'
+import styles from './viewhotel.module.scss'
 import { Button, Offcanvas } from 'react-bootstrap'
 
 export default function Viewhotel(){

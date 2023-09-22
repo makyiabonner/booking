@@ -1,4 +1,4 @@
-import styles from '../HotelCard/hotelcard.module.scss'
+import styles from './hotelcard.module.scss'
 export default function HotelCard(){
     const arr = [1,1,1,1,1,1];
     return (
