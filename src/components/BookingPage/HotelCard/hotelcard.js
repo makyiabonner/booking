@@ -1,6 +1,9 @@
 import styles from './hotelcard.module.scss'
 export default function HotelCard(){
-    const arr = [1,1,1,1,1,1];
+    let arr = [];
+    for (let i = 0; i < 3; i++){
+        arr.push(i)
+    }
     return (
         <div>
            {arr.map(num => {
@@ -9,7 +12,7 @@ export default function HotelCard(){
                 <div className={styles.card_left}>
                     <img 
                         style={{borderRadius: '15px'}}
-                        src='/images/resort.webp'
+                        src='https://cf.bstatic.com/xdata/images/hotel/max1280x900/285551218.jpg?k=fc6202a20df2f3a404e618aaca867db78a30067652eec90d164634c24c93ce5e&o='
                         width={200}
                         height={150} 
                     />

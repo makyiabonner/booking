@@ -15,10 +15,19 @@
     background-color: white;
 }
 .label{
+    position: relative;
     font-size: 13px;
     padding:6px 15px;
     color:rgb(99, 99, 99);
     font-weight: 600;
+}
+.Results__container{
+    position: absolute;
+    top: 100%;
+    width: 20em;
+    height: fit-content;
+    border-radius: 15px;
+    z-index: 999999;
 }
 .LocationText,.CheckInText,.TotalText{
     background-color: rgb(219, 219, 219);

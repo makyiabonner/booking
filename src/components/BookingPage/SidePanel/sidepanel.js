@@ -1,4 +1,5 @@
 import HotelCard from '../HotelCard/hotelcard'
+import ResultsCard from '../ResultsCard/resultsCard';
 import styles from './sidepanel.module.scss'
 
 export default function Sidepanel(){
@@ -25,6 +26,12 @@ export default function Sidepanel(){
                         <div className='d-flex'>
                             <label className={`${styles.label}`}>Locations
                                 <input className={styles.LocationText} type='text' required />
+                                <div className={styles.Results__container}>
+                                    <ResultsCard/>
+                                    <ResultsCard/>
+                                    <ResultsCard/>
+                                    <ResultsCard/>
+                                </div>
                             </label>
                             <button className={styles.SubmitButton} onClick={getHotels}>Submit</button>
                         </div>
