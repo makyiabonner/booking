@@ -7,42 +7,91 @@
 }
 .SearchTab{
     display: flex;
+    gap: 1em;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 35%;
     width: 100%;
+    padding: 2rem;
     background-color: white;
 }
+
+.Location{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .label{
+    display: flex;
+    flex-direction: column;
     position: relative;
     font-size: 13px;
-    padding:6px 15px;
     color:rgb(99, 99, 99);
     font-weight: 600;
 }
+
 .Results__container{
     position: absolute;
+    margin-top: .3em;
     top: 100%;
     width: 20em;
     height: fit-content;
     border-radius: 15px;
     z-index: 999999;
 }
-.LocationText,.CheckInText,.TotalText{
+
+@keyframes hide {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+@keyframes show {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+        display: block;
+    }
+}
+
+.show{
+    animation: show .3s alternate
+}
+.hidden{
+    display: none;
+}
+.Location__text{
+    width: 16rem;
+}
+.Date__input{
+    width: 9rem;
+}
+.Persons__input{
+    width: 4rem;
+}
+.Location__text,
+.Date__input,
+.Persons__input{
     background-color: rgb(219, 219, 219);
     height: 1.3rem;
     border-radius: 20px;
     border: none;
     padding: 15px;
-    font-size: 1rem;
+    font-size: .85rem;
 }
-.LocationText,.CheckInText,.TotalText:focus{
+.CheckInText,.TotalText:focus{
     outline: none;
 
-}
-.LocationText{
-    width: 18rem;
 }
 .SubmitButton{
     border-radius: 20px;
