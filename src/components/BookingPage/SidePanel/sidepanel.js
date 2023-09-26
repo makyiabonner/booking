@@ -1,23 +1,30 @@
 import HotelCard from '../HotelCard/hotelcard'
 import ResultsCard from '../ResultsCard/resultsCard';
 import styles from './sidepanel.module.scss';
-import { getLocation } from '@/components/api';
-import { useState, useEffect } from 'react';
+import { getLocation, getHotels } from '@/components/api';
+import { useState } from 'react';
 
+//hotel_name, main_photo_url review_score
 export default function Sidepanel(){
     const [inputContent, setInputContent] = useState('');
     const [isActive, setIsActive] = useState(false);
     const [searchList, setSearchList] = useState([]);
+    const [destID, setDestID] = useState('');
 
     const getSearchList = () => {
         return (
             <ul className={`${styles.Results__container} ${inputContent && isActive? styles.show : styles.hidden}`}>
                 {searchList.map((item) => {
                     const updatedInput = `${item.name}, ${item.region}`;
+
                     return (
                         <li 
                             className={styles.Search__list}
-                            onClick={() => handleResultClick(updatedInput)}>
+                            onClick={() => {
+                                handleResultClick(updatedInput);
+                                setDestID(() => item.dest_id);
+                            }}
+                            >
                             <ResultsCard key={item.id} city={item.name} region={item.region}/>
                         </li>
                         )
@@ -26,9 +33,11 @@ export default function Sidepanel(){
             </ul>
         )
     }
+
     const handleInputBlur = () => {
-        setTimeout(() => setIsActive(false), 200)
+        setTimeout(() => setIsActive(false), 200);
     }
+
     const handleInputChange = async (event) => {
         setInputContent(event.target.value);
         const searchResults = await getLocation(inputContent);
@@ -66,7 +75,7 @@ export default function Sidepanel(){
                             {searchList.length > 0 ? getSearchList() : null}
                         </div>
                     </label>
-                    <button className={styles.SubmitButton}>Submit</button>
+                    <button className={styles.SubmitButton} type='button' onClick={getHotels(destID)}>Submit</button>
                 </div>
                 <div className='d-flex'>
                     <label className={`${styles.label} d-block`}>Check-In Date
@@ -75,7 +84,7 @@ export default function Sidepanel(){
                     <label className={`${styles.label} d-block`}>Check-Out Date
                         <input className={styles.Date__input} type='date' />
                     </label>
-                    <label className={`${styles.label} d-block`}>Total Persons / Rooms
+                    <label className={`${styles.label} d-block`}>Rooms
                         <select className={styles.Persons__input} type='select'>
                             {getDropdownOptions()}
                         </select>
