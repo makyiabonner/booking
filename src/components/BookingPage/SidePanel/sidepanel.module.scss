@@ -79,6 +79,22 @@
 .Persons__input{
     width: 4rem;
 }
+.Search__list{
+    list-style: none;
+    background-color: rgb(245, 245, 245);
+    border-bottom: .13rem solid rgb(167, 166, 166);
+}
+.Search__list:hover{
+    background-color: rgb(211, 211, 211);
+    transition: all .3s;
+}
+.Search__list:first-of-type{
+    border-radius: 15px 15px 0 0;
+}
+.Search__list:last-of-type{
+    border-radius:  0 0 15px 15px;
+    border-bottom: none;
+}
 .Location__text,
 .Date__input,
 .Persons__input{

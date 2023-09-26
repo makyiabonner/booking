@@ -2,9 +2,8 @@
 
 .Card{
     display: flex;
-    background-color: rgb(245, 245, 245);
     border: none;
-    border-bottom: .13rem solid rgb(167, 166, 166);
+    background-color: transparent;
     padding: 0;
     transition: all .2s;
 
@@ -30,13 +29,4 @@
     font-weight: 500;
     color: rgb(129, 129, 129);
 }
-.Card:hover{
-    background-color: rgb(211, 211, 211);
-}
-.Card:first-of-type{
-    border-radius: 15px 15px 0 0;
-}
-.Card:last-of-type{
-    border-radius: 0 0 15px 15px;
-    border:none;
-}
+

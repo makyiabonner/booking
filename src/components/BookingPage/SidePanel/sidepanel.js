@@ -1,39 +1,69 @@
 import HotelCard from '../HotelCard/hotelcard'
 import ResultsCard from '../ResultsCard/resultsCard';
 import styles from './sidepanel.module.scss';
-import { useState } from 'react';
+import { getLocation } from '@/components/api';
+import { useState, useEffect } from 'react';
 
 export default function Sidepanel(){
     const [inputContent, setInputContent] = useState('');
-    const [isActive, setIsActive] = useState(false)
+    const [isActive, setIsActive] = useState(false);
+    const [searchList, setSearchList] = useState([]);
 
-    const handleInputChange = (event) => setInputContent(event.target.value);
-    function getDropdownOptions (){
+    const getSearchList = () => {
+        return (
+            <ul className={`${styles.Results__container} ${inputContent && isActive? styles.show : styles.hidden}`}>
+                {searchList.map((item) => {
+                    const updatedInput = `${item.name}, ${item.region}`;
+                    return (
+                        <li 
+                            className={styles.Search__list}
+                            onClick={() => handleResultClick(updatedInput)}>
+                            <ResultsCard key={item.id} city={item.name} region={item.region}/>
+                        </li>
+                        )
+                    })
+                }
+            </ul>
+        )
+    }
+    const handleInputBlur = () => {
+        setTimeout(() => setIsActive(false), 200)
+    }
+    const handleInputChange = async (event) => {
+        setInputContent(event.target.value);
+        const searchResults = await getLocation(inputContent);
+        setSearchList(searchResults);
+    };
+
+    const handleResultClick = (selectedValue) => {
+        setInputContent(() => selectedValue);
+        setIsActive(false);
+    };
+
+    const getDropdownOptions = () => {
         const options = [];
-
         for (let i = 0; i <= 6; i++){
             options.push(<option value={i}>{i}</option>);
         };
         return options;
     }
+
     return (
         <div className={styles.SidePanel}>
             <form className={styles.SearchTab}>
                 <div className={styles.Location}>
                     <label className={`${styles.label}`}>Locations
                         <input 
+                            value={inputContent}
                             className={styles.Location__text} 
                             type='text'
                             onChange={handleInputChange}
                             onFocus={() => setIsActive(true)}
-                            onBlur={() => setIsActive(false)}
+                            onBlur={() => handleInputBlur}
                             required 
                         />
-                        <div className={`${styles.Results__container} ${inputContent && isActive? styles.show : styles.hidden}`}>
-                            <ResultsCard/>
-                            <ResultsCard/>
-                            <ResultsCard/>
-                            <ResultsCard/>
+                        <div>
+                            {searchList.length > 0 ? getSearchList() : null}
                         </div>
                     </label>
                     <button className={styles.SubmitButton}>Submit</button>
