@@ -2,6 +2,7 @@ import HotelCard from '../HotelCard/hotelcard'
 import ResultsCard from '../ResultsCard/resultsCard';
 import styles from './sidepanel.module.scss';
 import { getLocation, getHotels } from '@/components/api';
+import { debounce, getDropdownOptions } from '@/components/util';
 import { useState } from 'react';
 
 //hotel_name, main_photo_url, review_score, district, city_trans
@@ -12,28 +13,50 @@ export default function Sidepanel(){
     const [searchList, setSearchList] = useState([]);
     const [hotelList, setHotelList] = useState([]);
     const [destID, setDestID] = useState('');
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const [inDate, setInDate] = useState(today.toISOString().split('T')[0]);
+    const [outDate, setOutDate] = useState(tomorrow.toISOString().split('T')[0]);
+	
+    
+    const handleCheckInDateChange = (event) => {
+        setInDate(event.target.value);
+    };
 
-    const debounce = (func, delay) =>{
-        let timer;
-        return function (...args){
-            if (timer) {
-                clearTimeout(timer);
-            }
-        timer = setTimeout(() => func(...args), delay);
-        }
-    }
+    const handleCheckOutDateChange = (event) => {
+        setOutDate(event.target.value);
+    };
 
     const debounceApiCall = debounce(async (inputValue) => {
         const searchResults = await getLocation(inputValue);
         setSearchList(searchResults);
-    }, 300);
+    }, 700);
 
     const handleInputChange = async (event) => {
         const input = event.target.value;
         setInputContent(input);
         setDebounceInput(input);
-
         debounceApiCall(input)
+    };
+    
+    const handleInputBlur = () => {
+        setTimeout(() => setIsActive(false), 200);
+    }
+    
+    const handleGetHotels = async () => {
+        try {
+            const hotelResults = await getHotels(destID, inDate, outDate);
+            console.log("Hotel Results:", hotelResults);
+            setHotelList(hotelResults.result);
+        } catch (error) {
+            console.error("Error fetching hotels:", error);
+        }
+    }
+    
+    const handleResultClick = (selectedValue) => {
+        setInputContent(() => selectedValue);
+        setIsActive(false);
     };
 
     const getSearchList = () => {
@@ -74,30 +97,6 @@ export default function Sidepanel(){
         )
     }
 
-    const handleInputBlur = () => {
-        setTimeout(() => setIsActive(false), 200);
-    }
-
-    const handleGetHotels = async (destID) => {
-        const hotelResults = await getHotels(destID);
-        setHotelList(hotelResults.result);
-        console.log(hotelList)
-    }
-
-
-    const handleResultClick = (selectedValue) => {
-        setInputContent(() => selectedValue);
-        setIsActive(false);
-    };
-
-    const getDropdownOptions = () => {
-        const options = [];
-        for (let i = 0; i <= 6; i++){
-            options.push(<option value={i}>{i}</option>);
-        };
-        return options;
-    }
-
     return (
         <div className={styles.SidePanel}>
             <form className={styles.SearchTab}>
@@ -120,10 +119,19 @@ export default function Sidepanel(){
                 </div>
                 <div className='d-flex'>
                     <label className={`${styles.label} d-block`}>Check-In Date
-                        <input className={styles.Date__input} type='date' />
+                        <input 
+                            className={styles.Date__input} 
+                            type='date'
+                            value={inDate}
+                            onChange={handleCheckInDateChange}                            
+                        />
                     </label>
                     <label className={`${styles.label} d-block`}>Check-Out Date
-                        <input className={styles.Date__input} type='date' />
+                        <input 
+                            className={styles.Date__input} 
+                            type='date'
+                            value={outDate}
+                            onChange={handleCheckOutDateChange}                        />
                     </label>
                     <label className={`${styles.label} d-block`}>Rooms
                         <select className={styles.Persons__input} type='select'>

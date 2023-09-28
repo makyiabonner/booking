@@ -1,5 +1,4 @@
 import styles from './resultsCard.module.scss'
-import { useState } from 'react'
 
 export default function ResultsCard({city, region}){
     return(
