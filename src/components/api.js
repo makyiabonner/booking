@@ -2,7 +2,7 @@
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '8fd9ac38eemsha20403a81d3bec1p1cccecjsnd3a289871000',
+		'X-RapidAPI-Key': '4f71c663dfmshcb231e4b1acf127p1ab93bjsn1e0b82789c4e',
 		'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
 	}
 };
@@ -29,7 +29,6 @@ export async function getHotels(destID){
 	try {
 		const response = await fetch(hotels(destID), options);
 		const result = await response.json();
-		console.log(result)
 		return result;
 	} catch (error) {
 		console.error(error);

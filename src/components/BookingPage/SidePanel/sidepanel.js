@@ -4,12 +4,37 @@ import styles from './sidepanel.module.scss';
 import { getLocation, getHotels } from '@/components/api';
 import { useState } from 'react';
 
-//hotel_name, main_photo_url review_score
+//hotel_name, main_photo_url, review_score, district, city_trans
 export default function Sidepanel(){
     const [inputContent, setInputContent] = useState('');
+    const [debounceInput, setDebounceInput] = useState('');
     const [isActive, setIsActive] = useState(false);
     const [searchList, setSearchList] = useState([]);
+    const [hotelList, setHotelList] = useState([]);
     const [destID, setDestID] = useState('');
+
+    const debounce = (func, delay) =>{
+        let timer;
+        return function (...args){
+            if (timer) {
+                clearTimeout(timer);
+            }
+        timer = setTimeout(() => func(...args), delay);
+        }
+    }
+
+    const debounceApiCall = debounce(async (inputValue) => {
+        const searchResults = await getLocation(inputValue);
+        setSearchList(searchResults);
+    }, 300);
+
+    const handleInputChange = async (event) => {
+        const input = event.target.value;
+        setInputContent(input);
+        setDebounceInput(input);
+
+        debounceApiCall(input)
+    };
 
     const getSearchList = () => {
         return (
@@ -34,15 +59,31 @@ export default function Sidepanel(){
         )
     }
 
+    const getHotelList = () => {
+        return(
+            hotelList.map(hotel => {
+                return (
+                    <HotelCard 
+                        img = {hotel.max_photo_url}
+                        name = {hotel.hotel_name}
+                        location = {hotel.district ? `${hotel.district}, ${hotel.city_trans}` : hotel.city_trans}
+                        price = {hotel.price_breakdown.gross_price}
+                        review = {hotel.review_score} 
+                    />
+                )})
+        )
+    }
+
     const handleInputBlur = () => {
         setTimeout(() => setIsActive(false), 200);
     }
 
-    const handleInputChange = async (event) => {
-        setInputContent(event.target.value);
-        const searchResults = await getLocation(inputContent);
-        setSearchList(searchResults);
-    };
+    const handleGetHotels = async (destID) => {
+        const hotelResults = await getHotels(destID);
+        setHotelList(hotelResults.result);
+        console.log(hotelList)
+    }
+
 
     const handleResultClick = (selectedValue) => {
         setInputContent(() => selectedValue);
@@ -75,7 +116,7 @@ export default function Sidepanel(){
                             {searchList.length > 0 ? getSearchList() : null}
                         </div>
                     </label>
-                    <button className={styles.SubmitButton} type='button' onClick={getHotels(destID)}>Submit</button>
+                    <button className={styles.SubmitButton} type='button' onClick={() => handleGetHotels(destID)}>Submit</button>
                 </div>
                 <div className='d-flex'>
                     <label className={`${styles.label} d-block`}>Check-In Date
@@ -98,7 +139,7 @@ export default function Sidepanel(){
                 </ul>
             </form>
             <section className={styles.HotelScroll}>
-                <HotelCard/>
+                {hotelList.length > 0 ? getHotelList() : null}
             </section>
         </div>
     )

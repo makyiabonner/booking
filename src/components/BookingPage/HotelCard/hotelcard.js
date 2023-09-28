@@ -1,6 +1,6 @@
 import styles from './hotelcard.module.scss';
 
-export default function HotelCard({img, name, location, price}){
+export default function HotelCard({img, name, location, price ,review}){
     return (
         <div>
             <div className={styles.card}>
@@ -17,7 +17,7 @@ export default function HotelCard({img, name, location, price}){
                     </div>
                 </div>
                 <div className={styles.card_right}>
-                    <p className={styles.hotel_rating}>9.0</p>
+                    <p className={styles.hotel_rating}>{review}</p>
                     <div>
                         <span className={styles.hotel_nights}>nights, people</span>
                         <p className={styles.hotel_pricing}>${price}</p>
