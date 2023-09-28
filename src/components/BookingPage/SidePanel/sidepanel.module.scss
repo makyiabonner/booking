@@ -140,8 +140,8 @@
 .HotelScroll{
     width:100%;
     height:65%;
-    scroll-snap-type: mandatory;
-    scroll-snap-align: start;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
     overflow-y: scroll;
 }
 .HotelScroll::-webkit-scrollbar{

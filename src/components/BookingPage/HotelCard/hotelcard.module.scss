@@ -1,6 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .card{
+    scroll-snap-align: start;
     background-color: white;
     padding: 20px;
     display: flex;
