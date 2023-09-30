@@ -17,9 +17,15 @@
 }
 .hotel_name{
     margin: 0;
-    width: 14rem;
     font-size: 1em;
+    width: 18rem;
     font-weight: 600;
+}
+.hotel_img{
+    border-radius: 1rem;
+    min-width: 12rem;
+    width: 12rem; 
+    height: 10.5rem;
 }
 .hotel_location{
     font-weight: 100;
@@ -33,9 +39,12 @@
     justify-content: space-between;
 }
 .hotel_rating{
+    display: grid;
+    place-content: center;
     color: white;
     background-color:$brand-primary;
-    padding:5px;
+    width: 2rem;
+    height: 2rem;
     border-radius: .5rem;
 }
 .hotel_nights{

@@ -1,14 +1,13 @@
 import styles from './hotelcard.module.scss';
 
-export default function HotelCard({img, name, location, price ,review}){
+export default function HotelCard({img, name, location, price ,review, id, selectedHotel}){
+    const handleHotelClick = () => selectedHotel = id;
     return (
-        <div className={styles.card}>
+        <div className={styles.card} onClick={handleHotelClick}>
             <div className={styles.card_left}>
                 <img 
-                    style={{borderRadius: '15px'}}
+                    className={styles.hotel_img}
                     src={img}
-                    width={200}
-                    height={150} 
                 />
                 <div className='d-flex flex-column'>
                     <p className={styles.hotel_name}>{name}</p>
@@ -16,7 +15,7 @@ export default function HotelCard({img, name, location, price ,review}){
                 </div>
             </div>
             <div className={styles.card_right}>
-                <p className={styles.hotel_rating}>{review}</p>
+                <p className={styles.hotel_rating}>{review === Math.floor(review) ? `${review}.0` : review}</p>
                 <div>
                     <span className={styles.hotel_nights}>nights, people</span>
                     <p className={styles.hotel_pricing}>${price}</p>

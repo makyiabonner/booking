@@ -5,8 +5,7 @@ import { getLocation, getHotels } from '@/components/api';
 import { debounce, getDropdownOptions } from '@/components/util';
 import { useState } from 'react';
 
-//hotel_name, main_photo_url, review_score, district, city_trans
-export default function Sidepanel(){
+export default function Sidepanel({ selectedHotel }){
     const [inputContent, setInputContent] = useState('');
     const [debounceInput, setDebounceInput] = useState('');
     const [isActive, setIsActive] = useState(false);
@@ -18,11 +17,15 @@ export default function Sidepanel(){
     tomorrow.setDate(today.getDate() + 1);
     const [inDate, setInDate] = useState(today.toISOString().split('T')[0]);
     const [outDate, setOutDate] = useState(tomorrow.toISOString().split('T')[0]);
+    const [hotelInfo, setHotelInfo] = useState(null);
+
+    selectedHotel = hotelInfo;
 	
-    
     const handleCheckInDateChange = (event) => {
         setInDate(event.target.value);
     };
+
+    const handleSelectedHotel = (selectedHotelCardID) => setHotelInfo(selectedHotelCardID);
 
     const handleCheckOutDateChange = (event) => {
         setOutDate(event.target.value);
@@ -73,7 +76,11 @@ export default function Sidepanel(){
                                 setDestID(() => item.dest_id);
                             }}
                             >
-                            <ResultsCard key={item.id} city={item.name} region={item.region}/>
+                            <ResultsCard 
+                                key={item.id} 
+                                city={item.name} 
+                                region={item.region}
+                            />
                         </li>
                         )
                     })
@@ -91,7 +98,9 @@ export default function Sidepanel(){
                         name = {hotel.hotel_name}
                         location = {hotel.district ? `${hotel.district}, ${hotel.city_trans}` : hotel.city_trans}
                         price = {hotel.price_breakdown.gross_price}
-                        review = {hotel.review_score} 
+                        review = {hotel.review_score}
+                        id={hotel.hotel_id}
+                        selectedHotel={handleSelectedHotel}
                     />
                 )})
         )

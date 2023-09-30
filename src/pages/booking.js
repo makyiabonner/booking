@@ -11,19 +11,11 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Booking(){
     const [ isActive, setIsActive ] = useState(false);
-    const [ activeImg, setActiveImg ] = useState(null);
     const toggleActiveState = () => setIsActive(!isActive);
-    const [isHovered, setIsHovered] = useState(false);
+    const [selectedHotel, setSelectedHotel] = useState(null);
+    
+    const handleSelectedHotel = (hotelInfo) => setSelectedHotel(hotelInfo);
 
-    const handleMouseEnter = (id) => {
-      setActiveImg(id)
-      setIsHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-      setActiveImg(null)
-      setIsHovered(false);
-    };
     return (
         <>
             <Head>
@@ -33,14 +25,20 @@ export default function Booking(){
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <main className={styles.main}>
-            <Register isActive={isActive} toggleActiveState={toggleActiveState}/>
-            <Nav isActive={isActive} toggleActiveState={toggleActiveState} />
-              <section className='d-flex w-100'>
-                <Sidepanel/>
-                <div className={styles.viewhotel_div}>
-                  <Viewhotel/>
-                </div>
-              </section>
+                <Register 
+                  isActive={isActive} 
+                  toggleActiveState={toggleActiveState}
+                />
+                <Nav 
+                  isActive={isActive} 
+                  toggleActiveState={toggleActiveState} 
+                />
+                <section className='d-flex w-100'>
+                    <Sidepanel selectedHotel={handleSelectedHotel} />
+                    <div className={styles.viewhotel_div}>
+                        <Viewhotel selectedHotel={selectedHotel} />
+                    </div>
+                </section>
             </main>
         </>
     )
