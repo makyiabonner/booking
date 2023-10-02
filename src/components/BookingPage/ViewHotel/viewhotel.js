@@ -2,16 +2,25 @@ import { useState } from 'react'
 import HotelCard from '../HotelCard/hotelcard'
 import styles from './viewhotel.module.scss'
 import { Button, Offcanvas } from 'react-bootstrap';
+import { getHotelPhotos } from '@/components/api';
 
 export default function Viewhotel({ selectedHotel }){
     const [ reviews, setReviews] = useState(false)
     const [show, setShow] = useState(false);
+    const [photoSlides, setPhotoSlides] = useState([]);
 
     const toggleReviews = () => setReviews(reviews => !reviews)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    console.log(selectedHotel);
+    const blockID = selectedHotel?.block[0].room_id
+    const hotelPrice = selectedHotel?.composite_price_breakdown.all_inclusive_amount.value ;
+    const hotelRating = selectedHotel?.breakfast_review_score.rating
+    ////const hotelComments = selectedHotel?.
+    const hotelName = selectedHotel?.hotel_name || 'Loading...';
+    const hotelPhotoGallery = selectedHotel?.rooms[blockID].photos || []
+
+    
     return (
         <>
             <Offcanvas className='w-50'show={show} onHide={handleClose}>
@@ -32,45 +41,15 @@ export default function Viewhotel({ selectedHotel }){
                     </button>
                 </div>
             </div>
-            <section className={`${styles.hotel_model} position-relative`} style={{backgroundSize:'cover',backgroundPosition:'center'}}>
+            <section className={`${styles.hotel_model} position-relative`} 
+                style={{
+                    backgroundSize:'cover',
+                    backgroundPosition:'center',
+                    backgroundImage:`url(
+                        "https://cf.bstatic.com/xdata/images/hotel/max500/484611612.jpg?k=abb13259b2c6ea8ee9a1bde2899086e5c31c40a5a44fca1489654151455497aa&o=")`
+                }}>
                 <div className={reviews? styles.toggle_reviews : 'd-none'}>
                     <div className={styles.review_grid}>
-                        <div className={styles.review_card}>
-                            <div className={styles.review_left}>
-                                <img src="" alt="" className={styles.review_cardImg} />
-                                <h6 className={styles.review_cardProfileName}>hello world</h6>
-                                <span className={styles.review_cardDate}>July 2023</span>
-                            </div>
-                            <div className={styles.review_right}>
-                                <p className={styles.review_cardComment}>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab officiis in atque, odio doloremque deleniti quo debitis culpa amet sint modi neque unde cupiditate, ducimus aspernatur nesciunt possimus? Nostrum, dolore!
-                                </p>
-                            </div>
-                        </div>
-                        <div className={styles.review_card}>
-                            <div className={styles.review_left}>
-                                <img src="" alt="" className={styles.review_cardImg} />
-                                <h6 className={styles.review_cardProfileName}>hello world</h6>
-                                <span className={styles.review_cardDate}>July 2023</span>
-                            </div>
-                            <div className={styles.review_right}>
-                                <p className={styles.review_cardComment}>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab officiis in atque, odio doloremque deleniti quo debitis culpa amet sint modi neque unde cupiditate, ducimus aspernatur nesciunt possimus? Nostrum, dolore!
-                                </p>
-                            </div>
-                        </div>
-                        <div className={styles.review_card}>
-                            <div className={styles.review_left}>
-                                <img src="" alt="" className={styles.review_cardImg} />
-                                <h6 className={styles.review_cardProfileName}>hello world</h6>
-                                <span className={styles.review_cardDate}>July 2023</span>
-                            </div>
-                            <div className={styles.review_right}>
-                                <p className={styles.review_cardComment}>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab officiis in atque, odio doloremque deleniti quo debitis culpa amet sint modi neque unde cupiditate, ducimus aspernatur nesciunt possimus? Nostrum, dolore!
-                                </p>
-                            </div>
-                        </div>
                         <div className={styles.review_card}>
                             <div className={styles.review_left}>
                                 <img src="" alt="" className={styles.review_cardImg} />
@@ -88,7 +67,7 @@ export default function Viewhotel({ selectedHotel }){
                 <div className='d-flex h-100'>
                     <div className={styles.toggle_reviews} onClick={toggleReviews}></div>
                     <div className={styles.hotel_rating_div}>
-                        <p className={styles.hotel_rating}>9.0</p>
+                        <p className={styles.hotel_rating}>{hotelRating}</p>
                         <ul className={styles.hotel_verdict}>
                             <li className={styles.hotel_pros}>Good akjd ksad jfl; kadf jdflja dhoadjfa</li>
                             <li className={styles.hotel_pros}>Great</li>
@@ -107,11 +86,11 @@ export default function Viewhotel({ selectedHotel }){
                     </div>
                 </div>
                 <div className={styles.hotel_details}>
-                    <h1 className={styles.hotel_name}>Hotel_Name</h1>
-                    <h3 className={styles.hotel_nightrates}>$122/Night</h3>
+                    <h1 className={styles.hotel_name}>{selectedHotel ? hotelName : 0}</h1>
+                    <h3 className={styles.hotel_nightrates}>${Math.floor(hotelPrice)}/Night</h3>
                     <button className={styles.reserve_button} onClick={handleShow}>Reserve</button>
                 </div>
-                    <p className={styles.hotel_photocount}> 5/21</p>
+                    <p className={styles.hotel_photocount}> {`0/${hotelPhotoGallery.length}`}</p>
             </section>
         </>
     )

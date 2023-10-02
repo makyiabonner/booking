@@ -1,4 +1,6 @@
 
+export const TODAY = new Date();
+export const TOMORROW = new Date(TODAY);
 
 export const debounce = (func, delay) =>{
     let timer;

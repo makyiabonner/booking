@@ -1,8 +1,8 @@
 import HotelCard from '../HotelCard/hotelcard'
 import ResultsCard from '../ResultsCard/resultsCard';
 import styles from './sidepanel.module.scss';
-import { getLocation, getHotels } from '@/components/api';
-import { debounce, getDropdownOptions } from '@/components/util';
+import { getLocation, getHotels, getHotelData } from '@/components/api';
+import { debounce, getDropdownOptions, TODAY, TOMORROW } from '@/components/util';
 import { useState } from 'react';
 
 export default function Sidepanel({ selectedHotel }){
@@ -12,20 +12,25 @@ export default function Sidepanel({ selectedHotel }){
     const [searchList, setSearchList] = useState([]);
     const [hotelList, setHotelList] = useState([]);
     const [destID, setDestID] = useState('');
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    const [inDate, setInDate] = useState(today.toISOString().split('T')[0]);
-    const [outDate, setOutDate] = useState(tomorrow.toISOString().split('T')[0]);
+
+    TOMORROW.setDate(TODAY.getDate() + 1);
+    const [inDate, setInDate] = useState(TODAY.toISOString().split('T')[0]);
+    const [outDate, setOutDate] = useState(TOMORROW.toISOString().split('T')[0]);
     const [hotelInfo, setHotelInfo] = useState(null);
 
-    selectedHotel = hotelInfo;
-	
+   
+    
+    const handleClickedHotel = async (hotelID) => {
+        const result = await getHotelData(hotelID, inDate, outDate);
+        setHotelInfo(result);
+        selectedHotel(hotelInfo);
+        console.log(hotelInfo)
+    };
+    
+    
     const handleCheckInDateChange = (event) => {
         setInDate(event.target.value);
     };
-
-    const handleSelectedHotel = (selectedHotelCardID) => setHotelInfo(selectedHotelCardID);
 
     const handleCheckOutDateChange = (event) => {
         setOutDate(event.target.value);
@@ -94,13 +99,15 @@ export default function Sidepanel({ selectedHotel }){
             hotelList.map(hotel => {
                 return (
                     <HotelCard 
-                        img = {hotel.max_photo_url}
-                        name = {hotel.hotel_name}
-                        location = {hotel.district ? `${hotel.district}, ${hotel.city_trans}` : hotel.city_trans}
-                        price = {hotel.price_breakdown.gross_price}
-                        review = {hotel.review_score}
-                        id={hotel.hotel_id}
-                        selectedHotel={handleSelectedHotel}
+                        details = {{
+                            img : hotel.max_photo_url,
+                            name : hotel.hotel_name,
+                            location : hotel.district ? `${hotel.district}, ${hotel.city_trans}` : hotel.city_trans,
+                            price : hotel.price_breakdown.gross_price,
+                            review : hotel.review_score
+                        }}
+                        hotelID={hotel.hotel_id}
+                        onSelect={() => handleClickedHotel(hotel.hotel_id)}
                     />
                 )})
         )
