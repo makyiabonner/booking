@@ -5,7 +5,7 @@ export default function Register({ isActive, toggleActiveState }){
     const [ returningUser, setReturningUser ] = useState(false);
     return(
         <>
-            <main className={isActive? `${styles.darkScreen}` : `d-none`}
+            <main className={isActive? `${styles.darkScreen}` : 'd-none'}
                     onClick={toggleActiveState}
                     >
                 {returningUser === false

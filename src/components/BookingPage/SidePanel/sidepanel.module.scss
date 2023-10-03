@@ -1,0 +1,176 @@
+@import '../../../styles/variables.scss';
+
+.SidePanel{
+    width: 35%;
+    height: 92vh;
+    box-sizing: border-box;
+}
+.SearchTab{
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 100%;
+    padding: clamp(1em, 2vw, 2em);
+    background-color: white;
+}
+
+.Location{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.label{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-size: .8rem;
+    color:rgb(99, 99, 99);
+    font-weight: 600;
+}
+
+.Results__container{
+    position: absolute;
+    margin-top: .3em;
+    top: 100%;
+    width: 20em;
+    height: fit-content;
+    border-radius: 15px;
+    z-index: 999999;
+}
+
+@keyframes hide {
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}
+@keyframes show {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+        display: block;
+    }
+}
+
+.show{
+    animation: show .3s alternate
+}
+.hidden{
+    display: none;
+}
+.Location__text{
+    width: clamp(8rem, 16vw, 16rem);
+}
+.Date__input{
+    width: clamp(7.4rem, 12vw,12rem);
+}
+.Date__row{
+    display: flex;
+    justify-content: space-between;
+    gap: .2rem;
+    width: 100%;
+}
+.Persons__input{
+    width: 4rem;
+}
+.Search__list{
+    list-style: none;
+    background-color: rgb(245, 245, 245);
+    border-bottom: .13rem solid rgb(167, 166, 166);
+}
+.Search__list:hover{
+    background-color: rgb(211, 211, 211);
+    transition: all .3s;
+}
+.Search__list:first-of-type{
+    border-radius: 15px 15px 0 0;
+}
+.Search__list:last-of-type{
+    border-radius:  0 0 15px 15px;
+    border-bottom: none;
+}
+.Location__text,
+.Date__input,
+.Persons__input{
+    background-color: rgb(219, 219, 219);
+    height: 1.3rem;
+    border-radius: 1rem;
+    border: none;
+    padding: 15px;
+    font-size: clamp(.75rem, 1vw,.85rem);
+}
+.CheckInText,.TotalText:focus{
+    outline: none;
+
+}
+.SubmitButton{
+    border-radius: 20px;
+    align-self: end;
+    font-size: clamp(.75rem, 1vw,.85rem);
+    color: white;
+    background-color: $brand-primary;
+    border: none;
+    height: fit-content;
+    padding: 6px clamp(10px, 4vw, 30px);
+}
+.SubmitButton:active{
+    background-color: #444343;
+}
+.FilterButton{
+    padding:0 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(219, 219, 219);
+}
+.FilterButton:active{
+    background-color: rgb(190, 190, 190);
+}
+.ul{
+    justify-content: space-between;
+    list-style: none;
+    padding:0;
+    margin: 0;
+}
+.HotelScroll{
+    width:100%;
+    height:70%;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+}
+.HotelScroll::-webkit-scrollbar{
+    background-color: whitesmoke;
+    width: 10px;
+    scroll-behavior: auto;
+
+}
+.HotelScroll::-webkit-scrollbar-thumb{
+    background-color: rgba(0,0,0,.8);
+    border-radius: 20px;
+}
+
+@media (max-width:1115px) {
+    .SearchTab{
+        display: none;
+    }
+    .SidePanel{
+        height: 70svh;
+        height: 60vh;
+        width: 100%;
+    }
+    .HotelScroll{
+        height: 100%;
+    }
+}

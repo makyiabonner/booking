@@ -9,6 +9,15 @@
     position: fixed;
     background-color: rgba(0,0,0,.6);
     z-index: 99;
+    animation: showRegistry .1s ease-in
+}
+@keyframes showRegistry {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 .registry{
     display: block;

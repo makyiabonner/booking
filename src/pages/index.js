@@ -2,28 +2,25 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.scss'
-import Nav from '@/components/Nav/Nav'
+import Nav from '@/components/Navbar/Navbar'
 import Register from '@/components/Register/Register'
 import { useState } from 'react'
-import LandingSection from '@/components/Homepage/Landing/landing'
-import HomeSection from '@/components/Homepage/HomeSection/HomeSection'
+import LandingSection from '@/components/HomePage/Landing/landing'
+import HomeSection from '@/components/HomePage/HomeSection/HomeSection'
+import { useEffect } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
-  const [ isActive, setIsActive ] = useState(false);
-  const [ activeImg, setActiveImg ] = useState(null);
   const toggleActiveState = () => setIsActive(!isActive);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false)
+  const [offsetY, setOffsetY]= useState(null);
+  const handleScroll = () => setOffsetY(window.pageYOffset);
 
-  const handleMouseEnter = (id) => {
-    setActiveImg(id)
-    setIsHovered(true);
-  };
+  useEffect(() =>{
+    window.addEventListener('scroll', handleScroll);
 
-  const handleMouseLeave = () => {
-    setActiveImg(null)
-    setIsHovered(false);
-  };
+    return () => window.removeEventListener('scroll',handleScroll);
+  },[]);
 
   const containerImgs = [
     {id:1, src: '/images/resort.webp', alt: 'RESORTS'},
@@ -43,26 +40,22 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
           <LandingSection/>
           <div className={styles.container}>
-          <div className={styles.textSection}>
+          <div className={`${styles.textSection} flex-column align-items-md-center gap-3 gap-md-0 flex-md-row`}>
             <h3 className={styles.containerSubtitle}>Seamless Reservations at Your<br></br> Fingertips</h3>
             <p className={styles.containerDesc}>No more time-consuming phone calls, now<br></br> you have the power to book services at<br></br> your convenience.</p>
           </div>
-          <div className={`mt-5 ${styles.containerImgs}`}>
+          <div className={`mt-5 flex-column flex-lg-row gap-5 align-items-sm-center align-items-md-center gap-lg-0 ${styles.containerImgs}`}>
                 {containerImgs.map((img) => {
                       return (
                         <div>
                           <div 
-                              className={styles.img} 
-                              style={{backgroundImage:`url(${img.src})`}}
-                              onMouseOver={() => handleMouseEnter(img.id)}
+                              className={styles.reservation_category} 
+                              style={{backgroundImage:`url(${img.src})`, 
+                                      transform:`translateY(${offsetY * -.03}px)` 
+                                    }}
                             >
-                            <div 
-                              className={isHovered && activeImg === img.id
-                                          ? `${styles.imgDiv} ${styles.appear}` 
-                                          : `${styles.imgDiv} ${styles.hidden}`}
-                              onMouseOut={handleMouseLeave}
-                            >
-                              <h1 className={isHovered && activeImg === img.id? `${styles.h1}` : 'd-none'} style={{backgroundImage:`url(${img.src})`}}>{img.alt}</h1>
+                            <div className={styles.imgDiv}>
+                              <h1 style={{ transform:`translateY(${offsetY * -.03}px)` }}>{img.alt}</h1>
                             </div>
                           </div>
                         </div>

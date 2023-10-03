@@ -1,6 +1,7 @@
 @import '../../../styles/variables.scss';
 
 .card{
+    scroll-snap-align: start;
     background-color: white;
     padding: 20px;
     display: flex;
@@ -16,21 +17,33 @@
 }
 .hotel_name{
     margin: 0;
-    font-size: 20px;
+    font-size: clamp(.8rem, 1vw, 1rem);
+    width: clamp(9rem, 8vw, 12rem);
     font-weight: 600;
+}
+.hotel_img{
+    border-radius: 1rem;
+    width: clamp(5rem, 12vw, 12rem); 
+    height: clamp(5rem, 12vh, 10.5rem);
 }
 .hotel_location{
     font-weight: 100;
+    font-size: .6rem;
+    bottom: 40%;
 }
 .card_right{
     display: flex;
     flex-direction: column;
     align-items:flex-end;
+    justify-content: space-between;
 }
 .hotel_rating{
+    display: grid;
+    place-content: center;
     color: white;
     background-color:$brand-primary;
-    padding:5px;
+    width: 2rem;
+    height: 2rem;
     border-radius: .5rem;
 }
 .hotel_nights{
@@ -40,11 +53,13 @@
 }
 .hotel_pricing{
     font-weight: bold;
+    text-align: end;
 }
-.hotel_availability{
-    border: none;
-    padding: 2px 20px;
-    border-radius: .5rem;
-    color: white;
-    background-color: $brand-primary;
+@media (max-width:1115px){
+    .hotel_name,
+    .hotel_location{
+        width: clamp(8rem,40vw,18rem);
+        font-size: clamp(.7rem,2vw,1rem);
+    }
+
 }
