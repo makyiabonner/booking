@@ -17,8 +17,8 @@
 }
 .hotel_name{
     margin: 0;
-    font-size: clamp(.5rem, 2vw, 1rem);
-    width: clamp(4rem, 8vw, 12rem);
+    font-size: clamp(.8rem, 1vw, 1rem);
+    width: clamp(9rem, 8vw, 12rem);
     font-weight: 600;
 }
 .hotel_img{
@@ -28,7 +28,7 @@
 }
 .hotel_location{
     font-weight: 100;
-    font-size: .8rem;
+    font-size: .6rem;
     bottom: 40%;
 }
 .card_right{
@@ -54,4 +54,12 @@
 .hotel_pricing{
     font-weight: bold;
     text-align: end;
+}
+@media (max-width:1115px){
+    .hotel_name,
+    .hotel_location{
+        width: clamp(8rem,40vw,18rem);
+        font-size: clamp(.7rem,2vw,1rem);
+    }
+
 }
