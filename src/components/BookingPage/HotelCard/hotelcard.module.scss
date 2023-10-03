@@ -17,15 +17,14 @@
 }
 .hotel_name{
     margin: 0;
-    font-size: 1em;
-    width: 18rem;
+    font-size: clamp(.5rem, 2vw, 1rem);
+    width: clamp(4rem, 8vw, 12rem);
     font-weight: 600;
 }
 .hotel_img{
     border-radius: 1rem;
-    min-width: 12rem;
-    width: 12rem; 
-    height: 10.5rem;
+    width: clamp(5rem, 12vw, 12rem); 
+    height: clamp(5rem, 12vh, 10.5rem);
 }
 .hotel_location{
     font-weight: 100;

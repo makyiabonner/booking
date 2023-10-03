@@ -133,8 +133,8 @@ export default function Sidepanel({ selectedHotel }){
                     </label>
                     <button className={styles.SubmitButton} type='button' onClick={() => handleGetHotels(destID)}>Submit</button>
                 </div>
-                <div className='d-flex'>
-                    <label className={`${styles.label} d-block`}>Check-In Date
+                <div className={styles.Date__row}>
+                    <label className={`${styles.label} d-flex`}>Check-In Date
                         <input 
                             className={styles.Date__input} 
                             type='date'
@@ -142,25 +142,14 @@ export default function Sidepanel({ selectedHotel }){
                             onChange={handleCheckInDateChange}                            
                         />
                     </label>
-                    <label className={`${styles.label} d-block`}>Check-Out Date
+                    <label className={`${styles.label} d-flex`}>Check-Out Date
                         <input 
                             className={styles.Date__input} 
                             type='date'
                             value={outDate}
                             onChange={handleCheckOutDateChange}                        />
                     </label>
-                    <label className={`${styles.label} d-block`}>Rooms
-                        <select className={styles.Persons__input} type='select'>
-                            {getDropdownOptions()}
-                        </select>
-                    </label>
                 </div>
-                <ul className={`${styles.ul} d-flex pb-3`}>
-                    <li><button className={styles.FilterButton}>Filters</button></li>
-                    <li><button className={styles.FilterButton}>Filters</button></li>
-                    <li><button className={styles.FilterButton}>Filters</button></li>
-                    <li><button className={styles.FilterButton}>Filters</button></li>
-                </ul>
             </form>
             <section className={styles.HotelScroll}>
                 {hotelList.length > 0 ? getHotelList() : null}

@@ -11,9 +11,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 35%;
+    height: 30%;
     width: 100%;
-    padding: 2rem;
+    padding: clamp(1em, 2vw, 2em);
     background-color: white;
 }
 
@@ -27,7 +27,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    font-size: 13px;
+    font-size: .8rem;
     color:rgb(99, 99, 99);
     font-weight: 600;
 }
@@ -71,10 +71,16 @@
     display: none;
 }
 .Location__text{
-    width: 16rem;
+    width: clamp(8rem, 16vw, 16rem);
 }
 .Date__input{
-    width: 9rem;
+    width: clamp(7.4rem, 12vw,12rem);
+}
+.Date__row{
+    display: flex;
+    justify-content: space-between;
+    gap: .2rem;
+    width: 100%;
 }
 .Persons__input{
     width: 4rem;
@@ -100,10 +106,10 @@
 .Persons__input{
     background-color: rgb(219, 219, 219);
     height: 1.3rem;
-    border-radius: 20px;
+    border-radius: 1rem;
     border: none;
     padding: 15px;
-    font-size: .85rem;
+    font-size: clamp(.75rem, 1vw,.85rem);
 }
 .CheckInText,.TotalText:focus{
     outline: none;
@@ -112,12 +118,12 @@
 .SubmitButton{
     border-radius: 20px;
     align-self: end;
-    font-size: 1rem;
+    font-size: clamp(.75rem, 1vw,.85rem);
     color: white;
     background-color: $brand-primary;
     border: none;
     height: fit-content;
-    padding: 5px 30px;
+    padding: 6px clamp(10px, 4vw, 30px);
 }
 .SubmitButton:active{
     background-color: #444343;
@@ -139,7 +145,7 @@
 }
 .HotelScroll{
     width:100%;
-    height:65%;
+    height:70%;
     scroll-behavior: smooth;
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
@@ -153,4 +159,18 @@
 .HotelScroll::-webkit-scrollbar-thumb{
     background-color: rgba(0,0,0,.8);
     border-radius: 20px;
+}
+
+@media (max-width:764px) {
+    .SearchTab{
+        display: none;
+    }
+    .SidePanel{
+        height: 70svh;
+        height: 60vh;
+        width: 100%;
+    }
+    .HotelScroll{
+        height: 100%;
+    }
 }

@@ -13,10 +13,10 @@ export const debounce = (func, delay) =>{
 }
 
 
-export const getDropdownOptions = () => {
+export const getDropdownOptions = (selectedOption) => {
     const options = [];
     for (let i = 0; i <= 6; i++){
-        options.push(<option value={i}>{i}</option>);
+        options.push(<option onClick={selectedOption = i} value={i}>{i}</option>);
     };
     return options;
 }

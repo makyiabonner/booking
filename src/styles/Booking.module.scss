@@ -8,3 +8,11 @@
 .viewhotel_div{
     width: 65%;
 }
+@media (max-width:764px) {
+    .main{
+        > section{
+            flex-direction: column-reverse;
+            height: 92vh;
+        }
+    }
+}
