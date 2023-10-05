@@ -12,6 +12,8 @@ export const debounce = (func, delay) =>{
     }
 }
 
+export const nextSlide = (value) => value++;
+export const prevSlide = (value) => --value;
 
 export const getDropdownOptions = (selectedOption) => {
     const options = [];

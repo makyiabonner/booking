@@ -173,4 +173,13 @@
     .HotelScroll{
         height: 100%;
     }
+    .HotelScroll::-webkit-scrollbar{
+        background-color: whitesmoke;
+        width: .3rem;
+        scroll-behavior: auto;
+    }
+    .HotelScroll::-webkit-scrollbar-thumb{
+        background-color: rgba(0,0,0,.8);
+        border-radius: 20px;
+    }
 }

@@ -16,7 +16,9 @@ export default function Viewhotel({ selectedHotel }){
     const hotelRating = selectedHotel?.breakfast_review_score.rating
     ////const hotelComments = selectedHotel?.
     const hotelName = selectedHotel?.hotel_name || 'Loading...';
-    const hotelPhotoGallery = selectedHotel?.rooms[blockID].photos || []
+    const hotelPhotoGallery = selectedHotel?.rooms[blockID].photos || [];
+    const slide = 0;
+    const currentSlide = hotelPhotoGallery[slide].url_original
 
     
     return (
@@ -43,8 +45,7 @@ export default function Viewhotel({ selectedHotel }){
                 style={{
                     backgroundSize:'cover',
                     backgroundPosition:'center',
-                    backgroundImage:`url(
-                        "https://cf.bstatic.com/xdata/images/hotel/max500/484611612.jpg?k=abb13259b2c6ea8ee9a1bde2899086e5c31c40a5a44fca1489654151455497aa&o=")`
+                    backgroundImage:`url(${currentSlide})`
                 }}>
                 <div className='d-flex h-100'>
                     <div className={styles.hotel_rating_div}>
