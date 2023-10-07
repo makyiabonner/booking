@@ -5,25 +5,25 @@ import { Button, Offcanvas } from 'react-bootstrap';
 
 export default function Viewhotel({ selectedHotel }){
     const [ reviews, setReviews] = useState(false)
-    const [show, setShow] = useState(false);
+    const [isActive, setIsActive] = useState(false);
 
     const toggleReviews = () => setReviews(reviews => !reviews)
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => setIsActive(false);
+    const handleShow = () => setIsActive(true);
 
-    const blockID = selectedHotel?.block[0].room_id
+    const blockID = selectedHotel?.block[0].room_id || 'black'
     const hotelPrice = selectedHotel?.composite_price_breakdown.all_inclusive_amount.value ;
     const hotelRating = selectedHotel?.breakfast_review_score.rating
     ////const hotelComments = selectedHotel?.
     const hotelName = selectedHotel?.hotel_name || 'Loading...';
     const hotelPhotoGallery = selectedHotel?.rooms[blockID].photos || [];
     const slide = 0;
-    const currentSlide = hotelPhotoGallery[slide].url_original
+    const currentSlide = hotelPhotoGallery[slide]?.url_original || null;
 
     
     return (
         <>
-            <Offcanvas className='w-50'show={show} onHide={handleClose}>
+            <Offcanvas className='w-50'show={isActive} onHide={handleClose}>
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Offcanvas</Offcanvas.Title>
               </Offcanvas.Header>
@@ -48,16 +48,16 @@ export default function Viewhotel({ selectedHotel }){
                     backgroundImage:`url(${currentSlide})`
                 }}>
                 <div className='d-flex h-100'>
-                    <div className={styles.hotel_rating_div}>
-                        <p className={styles.hotel_rating}>{hotelRating}</p>
+                    <div className={currentSlide? `${styles.hotel_rating_div}` : `${styles.hide}`}>
+                        <p className={currentSlide? `${styles.hotel_rating}` : `${styles.hide}`}>{hotelRating}</p>
                     </div>
                 </div>
-                <div className={styles.hotel_details}>
-                    <h1 className={styles.hotel_name}>{selectedHotel ? hotelName : 0}</h1>
-                    <h3 className={styles.hotel_nightrates}>${Math.floor(hotelPrice)}/Night</h3>
-                    <button className={styles.reserve_button} onClick={handleShow}>Reserve</button>
+                <div className={currentSlide? `${styles.hotel_details}` : `${styles.hide}`}>
+                    <h1 className={currentSlide? `${styles.hotel_name}` : `${styles.hide}`}>{selectedHotel ? hotelName : 0}</h1>
+                    <h3 className={currentSlide? `${styles.hotel_nightrates}` : `${styles.hide}`}>${Math.floor(hotelPrice)}/Night</h3>
+                    <button className={currentSlide? `${styles.reserve_button}` : `${styles.hide}`} onClick={handleShow}>Reserve</button>
                 </div>
-                    <p className={styles.hotel_photocount}> {`0/${hotelPhotoGallery.length}`}</p>
+                    <p className={currentSlide? `${styles.hotel_photocount}` : `${styles.hide}`}> {`0/${hotelPhotoGallery.length}`}</p>
             </section>
         </>
     )

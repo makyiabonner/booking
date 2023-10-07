@@ -11,10 +11,11 @@
 .hotel_rating,
 .hotel_photocount{
     color: rgb(243, 243, 243);
+    text-shadow: 0 0 6px black;
 }
 .hotel_name,
 .hotel_nightrates{
-    color: $brand-primary;
+    color: white;
 }
 
 .review_container{
@@ -31,6 +32,9 @@
     top: 0;
     left: 0;
     
+}
+.hide{
+    display: none;
 }
 .review_closeTab_div{
     position: relative;
@@ -203,7 +207,7 @@
         font-size: 1rem;
     }
     .hotel_name{
-        font-size: .8rem;
+        font-size: .62rem;
     }
     .hotel_nightrates{
         font-size: 1rem;
