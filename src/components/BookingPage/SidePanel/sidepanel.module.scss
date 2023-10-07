@@ -5,6 +5,19 @@
     height: 92vh;
     box-sizing: border-box;
 }
+.EmptyHotelScroll{
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: $brand-info;
+
+    > p{
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: $brand-primary;
+    }
+}
 .SearchTab{
     display: flex;
     gap: 1em;
@@ -35,6 +48,7 @@
 .Results__container{
     position: absolute;
     margin-top: .3em;
+    padding: 0;
     top: 100%;
     width: 20em;
     height: fit-content;

@@ -2,7 +2,7 @@ import HotelCard from '../HotelCard/hotelcard'
 import ResultsCard from '../ResultsCard/resultsCard';
 import styles from './sidepanel.module.scss';
 import { getLocation, getHotels, getHotelData } from '@/components/api';
-import { debounce, getDropdownOptions, TODAY, TOMORROW } from '@/components/util';
+import { debounce, TODAY, TOMORROW } from '@/components/util';
 import { useState } from 'react';
 
 export default function Sidepanel({ selectedHotel }){
@@ -152,7 +152,11 @@ export default function Sidepanel({ selectedHotel }){
                 </div>
             </form>
             <section className={styles.HotelScroll}>
-                {hotelList.length > 0 ? getHotelList() : null}
+                {hotelList.length > 0 ? 
+                    getHotelList() : 
+                    <div className={styles.EmptyHotelScroll}>
+                        <p>Well this is awkward...</p>
+                    </div>}
             </section>
         </div>
     )
