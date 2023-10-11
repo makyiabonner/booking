@@ -5,7 +5,7 @@ import { getLocation, getHotels, getHotelData } from '@/components/api';
 import { debounce, TODAY, TOMORROW } from '@/components/util';
 import { useState } from 'react';
 
-export default function Sidepanel({ selectedHotel }){
+export default function Sidepanel({ selectedHotel, setPresetHotel }){
     const [inputContent, setInputContent] = useState('');
     const [debounceInput, setDebounceInput] = useState('');
     const [isActive, setIsActive] = useState(false);
@@ -24,7 +24,6 @@ export default function Sidepanel({ selectedHotel }){
         const result = await getHotelData(hotelID, inDate, outDate);
         setHotelInfo(result);
         selectedHotel(hotelInfo);
-        console.log(hotelInfo)
     };
     
     
@@ -57,6 +56,8 @@ export default function Sidepanel({ selectedHotel }){
             const hotelResults = await getHotels(destID, inDate, outDate);
             console.log("Hotel Results:", hotelResults);
             setHotelList(hotelResults.result);
+            console.log(hotelList)
+            setPresetHotel(hotelList[0]);
         } catch (error) {
             console.error("Error fetching hotels:", error);
         }
@@ -99,6 +100,7 @@ export default function Sidepanel({ selectedHotel }){
             hotelList.map(hotel => {
                 return (
                     <HotelCard 
+                        key={hotel.hotel_id}
                         details = {{
                             img : hotel.max_photo_url,
                             name : hotel.hotel_name,
@@ -128,7 +130,7 @@ export default function Sidepanel({ selectedHotel }){
                             required 
                         />
                         <div>
-                            {searchList.length > 0 ? getSearchList() : null}
+                            {searchList && searchList.length > 0 ? getSearchList() : null}
                         </div>
                     </label>
                     <button className={styles.SubmitButton} type='button' onClick={() => handleGetHotels(destID)}>Submit</button>

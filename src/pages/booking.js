@@ -13,9 +13,8 @@ export default function Booking(){
     const [ isActive, setIsActive ] = useState(false);
     const toggleActiveState = () => setIsActive(!isActive);
     const [selectedHotel, setSelectedHotel] = useState(null);
+    const [presetHotel, setPresetHotel] = useState(null)
     
-    const handleSelectedHotel = (hotelInfo) => setSelectedHotel(hotelInfo);
-
     return (
         <>
             <Head>
@@ -34,9 +33,15 @@ export default function Booking(){
                   toggleActiveState={toggleActiveState} 
                 />
                 <section className='d-flex w-100'>
-                    <Sidepanel selectedHotel={handleSelectedHotel} />
+                    <Sidepanel 
+                      selectedHotel={setSelectedHotel} 
+                      setPresetHotel={setPresetHotel}
+                    />
                     <div className={styles.viewhotel_div}>
-                        <Viewhotel selectedHotel={selectedHotel} />
+                        <Viewhotel 
+                          selectedHotel={selectedHotel}
+                          preset={presetHotel} 
+                        />
                     </div>
                 </section>
             </main>

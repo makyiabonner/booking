@@ -3,24 +3,36 @@ import HotelCard from '../HotelCard/hotelcard'
 import styles from './viewhotel.module.scss'
 import { Button, Offcanvas } from 'react-bootstrap';
 
-export default function Viewhotel({ selectedHotel }){
-    const [ reviews, setReviews] = useState(false)
+export default function Viewhotel({ selectedHotel, preset }){
+    const [reviews, setReviews] = useState(false);
     const [isActive, setIsActive] = useState(false);
 
+    const checkSelectHotel = () => {
+        console.log(selectedHotel)
+        console.log(preset)
+        if (selectedHotel) {
+            return selectedHotel;
+        };
+
+        if (preset && selectedHotel === null) {
+            return preset;
+        };
+        return null;
+    };
+    const hotel = checkSelectHotel();
     const toggleReviews = () => setReviews(reviews => !reviews)
     const handleClose = () => setIsActive(false);
     const handleShow = () => setIsActive(true);
 
-    const blockID = selectedHotel?.block[0].room_id || 'black'
-    const hotelPrice = selectedHotel?.composite_price_breakdown.all_inclusive_amount.value ;
-    const hotelRating = selectedHotel?.breakfast_review_score.rating
-    ////const hotelComments = selectedHotel?.
-    const hotelName = selectedHotel?.hotel_name || 'Loading...';
-    const hotelPhotoGallery = selectedHotel?.rooms[blockID].photos || [];
+    const blockID = hotel && hotel.block && hotel.block[0] && hotel.block[0].room_id ? hotel.block[0].room_id : null;
+    const price = hotel ? hotel.composite_price_breakdown?.all_inclusive_amount?.value : null;
+    const rating = hotel ? hotel.breakfast_review_score?.rating : null;
+    const name = hotel ? hotel.hotel_name : null;
     const slide = 0;
-    const currentSlide = hotelPhotoGallery[slide]?.url_original || null;
+    const photoGallery = hotel && hotel.rooms && blockID ? hotel.rooms[blockID].photos : [];
+    const currentSlide = hotel && photoGallery ? photoGallery[slide]?.url_original : null;
 
-    
+    console.log( preset )
     return (
         <>
             <Offcanvas className='w-50'show={isActive} onHide={handleClose}>
@@ -41,23 +53,24 @@ export default function Viewhotel({ selectedHotel }){
                     </button>
                 </div>
             </div>
-            <section className={`${styles.hotel_model} position-relative`} 
+            <section className={styles.hotel_model} 
                 style={{
+                    background:`${hotel && photoGallery.length > 0? `url(${currentSlide})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
                     backgroundSize:'cover',
-                    backgroundPosition:'center',
-                    backgroundImage:`url(${currentSlide})`
+                    backgroundRepeat:'no-repeat',
+                    backgroundPosition:'center'
                 }}>
                 <div className='d-flex h-100'>
                     <div className={currentSlide? `${styles.hotel_rating_div}` : `${styles.hide}`}>
-                        <p className={currentSlide? `${styles.hotel_rating}` : `${styles.hide}`}>{hotelRating}</p>
+                        <p className={currentSlide? `${styles.hotel_rating}` : `${styles.hide}`}>{rating}</p>
                     </div>
                 </div>
                 <div className={currentSlide? `${styles.hotel_details}` : `${styles.hide}`}>
-                    <h1 className={currentSlide? `${styles.hotel_name}` : `${styles.hide}`}>{selectedHotel ? hotelName : 0}</h1>
-                    <h3 className={currentSlide? `${styles.hotel_nightrates}` : `${styles.hide}`}>${Math.floor(hotelPrice)}/Night</h3>
+                    <h1 className={currentSlide? `${styles.hotel_name}` : `${styles.hide}`}>{hotel ? name : 0}</h1>
+                    <h3 className={currentSlide? `${styles.hotel_nightrates}` : `${styles.hide}`}>${Math.floor(price)}/Night</h3>
                     <button className={currentSlide? `${styles.reserve_button}` : `${styles.hide}`} onClick={handleShow}>Reserve</button>
                 </div>
-                    <p className={currentSlide? `${styles.hotel_photocount}` : `${styles.hide}`}> {`0/${hotelPhotoGallery.length}`}</p>
+                    <p className={currentSlide? `${styles.hotel_photocount}` : `${styles.hide}`}> {`${slide}/${photoGallery.length}`}</p>
             </section>
         </>
     )

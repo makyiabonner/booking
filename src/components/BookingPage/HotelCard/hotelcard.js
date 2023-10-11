@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import styles from './hotelcard.module.scss';
 
 export default function HotelCard({ details, onSelect}){
-
-
     return (
-        <div className={styles.card} onClick={onSelect}>
+        <div 
+            className={`${styles.card}${onSelect ? styles.selected : ''}`}
+            onClick={onSelect}>
             <div className={styles.card_left}>
                 <img 
                     className={styles.hotel_img}
