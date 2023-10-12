@@ -11,6 +11,7 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
     const [isActive, setIsActive] = useState(false);
     const [searchList, setSearchList] = useState([]);
     const [hotelList, setHotelList] = useState([]);
+    const [selectedID, setSelectedID] = useState(null);
     const [destID, setDestID] = useState('');
 
     TOMORROW.setDate(TODAY.getDate() + 1);
@@ -108,8 +109,8 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
                             price : hotel.price_breakdown.gross_price,
                             review : hotel.review_score
                         }}
-                        hotelID={hotel.hotel_id}
-                        onSelect={() => handleClickedHotel(hotel.hotel_id)}
+                        isSelected={selectedID === hotel.hotel_id}
+                        onSelect={() => handleClickedHotel(hotel.hotel_id) && setSelectedID(hotel.hotel_id)}
                     />
                 )})
         )
@@ -154,7 +155,7 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
                 </div>
             </form>
             <section className={styles.HotelScroll}>
-                {hotelList.length > 0 ? 
+                {hotelList && hotelList.length > 0 ? 
                     getHotelList() : 
                     <div className={styles.EmptyHotelScroll}>
                         <p>Well this is awkward...</p>

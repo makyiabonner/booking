@@ -8,7 +8,9 @@
     border-top: 1px solid rgb(207, 207, 212);
 }
 .selected{
-    background-color: grey;
+    opacity: 1;
+    background-color: rgb(219, 219, 219);
+    transition: all .3s;
 }
 .card_left,.card_right{
     width: 50%;
