@@ -8,8 +8,6 @@ export default function Viewhotel({ selectedHotel, preset }){
     const [isActive, setIsActive] = useState(false);
 
     const checkSelectHotel = () => {
-        console.log(selectedHotel)
-        console.log(preset)
         if (selectedHotel) {
             return selectedHotel;
         };
@@ -32,7 +30,6 @@ export default function Viewhotel({ selectedHotel, preset }){
     const photoGallery = hotel && hotel.rooms && blockID ? hotel.rooms[blockID].photos : [];
     const currentSlide = hotel && photoGallery ? photoGallery[slide]?.url_original : null;
 
-    console.log( preset )
     return (
         <>
             <Offcanvas className='w-50'show={isActive} onHide={handleClose}>
@@ -55,7 +52,7 @@ export default function Viewhotel({ selectedHotel, preset }){
             </div>
             <section className={styles.hotel_model} 
                 style={{
-                    background:`${hotel && photoGallery.length > 0? `url(${currentSlide})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
+        //            background:`${hotel && photoGallery.length > 0? `url(${currentSlide})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
                     backgroundSize:'cover',
                     backgroundRepeat:'no-repeat',
                     backgroundPosition:'center'

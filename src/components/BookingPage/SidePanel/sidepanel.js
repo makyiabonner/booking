@@ -11,7 +11,7 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
     const [isActive, setIsActive] = useState(false);
     const [searchList, setSearchList] = useState([]);
     const [hotelList, setHotelList] = useState([]);
-    const [selectedID, setSelectedID] = useState(null);
+    const [selectedID, setSelectedID] = useState(hotelList[0]?.hotel_id || null);
     const [destID, setDestID] = useState('');
 
     TOMORROW.setDate(TODAY.getDate() + 1);
@@ -57,7 +57,6 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
             const hotelResults = await getHotels(destID, inDate, outDate);
             console.log("Hotel Results:", hotelResults);
             setHotelList(hotelResults.result);
-            console.log(hotelList)
             setPresetHotel(hotelList[0]);
         } catch (error) {
             console.error("Error fetching hotels:", error);
@@ -110,7 +109,11 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
                             review : hotel.review_score
                         }}
                         isSelected={selectedID === hotel.hotel_id}
-                        onSelect={() => handleClickedHotel(hotel.hotel_id) && setSelectedID(hotel.hotel_id)}
+                        onSelect={() => {
+                            setSelectedID(hotel.hotel_id)
+                            handleClickedHotel(selectedID)
+                            console.log(hotel.hotel_id)
+                        }}
                     />
                 )})
         )
