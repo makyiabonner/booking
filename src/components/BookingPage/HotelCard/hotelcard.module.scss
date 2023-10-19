@@ -5,15 +5,27 @@
     background-color: white;
     padding: 20px;
     display: flex;
+    justify-content: space-between;
     border-top: 1px solid rgb(207, 207, 212);
 }
-.card_left,.card_right{
-    width: 50%;
+.selected{
+    opacity: 1;
+    background-color: rgb(219, 219, 219);
+    transition: all .3s;
+}
+.card_right,
+.card_left{
+    width: fit-content;
 }
 .card_left{
     display: flex;
     flex-direction: row;
     gap: 1rem;
+
+    > img{
+        background-size: cover;
+        border-radius: 1rem;
+    }
 }
 .hotel_name{
     margin: 0;
@@ -21,11 +33,7 @@
     width: clamp(9rem, 8vw, 12rem);
     font-weight: 600;
 }
-.hotel_img{
-    border-radius: 1rem;
-    width: clamp(5rem, 12vw, 12rem); 
-    height: clamp(5rem, 12vh, 10.5rem);
-}
+
 .hotel_location{
     font-weight: 100;
     font-size: .6rem;
@@ -62,4 +70,28 @@
         font-size: clamp(.7rem,2vw,1rem);
     }
 
+}
+@media (min-width: 1116px) and (max-width: 1241px){
+    .card_left {
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+@media (min-width: 1242px) and (max-width: 1316px) {
+    .card_left {
+        img {
+            width: clamp(3rem, 22vw, 9rem);
+            height: clamp(3rem, 13vh, 7rem);
+        }
+    }
+}
+@media (max-width: 446px) {
+    .card_left {
+        img {
+            width: clamp(3rem, 22vw, 7rem);
+            height: clamp(3rem, 13vh, 7rem);
+        }
+    }
 }

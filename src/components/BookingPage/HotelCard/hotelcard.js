@@ -1,14 +1,17 @@
+import { useState } from 'react';
 import styles from './hotelcard.module.scss';
 
-export default function HotelCard({ details, onSelect}){
-
+export default function HotelCard({ details, onSelect, isSelected}){
 
     return (
-        <div className={styles.card} onClick={onSelect}>
+        <div 
+            className={`${styles.card} ${isSelected ? styles.selected : ''}`}
+            onClick={onSelect}>
             <div className={styles.card_left}>
                 <img 
-                    className={styles.hotel_img}
                     src={details.img}
+                    width={170}
+                    height={140}
                 />
                 <div className='d-flex flex-column'>
                     <p className={styles.hotel_name}>{details.name}</p>

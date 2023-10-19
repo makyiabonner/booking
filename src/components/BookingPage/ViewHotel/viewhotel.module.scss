@@ -6,15 +6,18 @@
     width: 100%;
     height: 92vh;
     padding: 2rem;
+    position: relative;
 }
+
 .hotel_details,
 .hotel_rating,
 .hotel_photocount{
     color: rgb(243, 243, 243);
+    text-shadow: 0 0 6px black;
 }
 .hotel_name,
 .hotel_nightrates{
-    color: $brand-primary;
+    color: white;
 }
 
 .review_container{
@@ -31,6 +34,9 @@
     top: 0;
     left: 0;
     
+}
+.hide{
+    display: none;
 }
 .review_closeTab_div{
     position: relative;
@@ -67,45 +73,7 @@
     background-color: rgba(0,0,0,.8);
     border-radius: 20px;
 }
-.review_card{
-    display: flex;
-    align-items: center;
-    padding: 30px;
-    width: 700px;
-    background-color: white;
-    border-right:7px solid grey;
-    gap: 20px;
-}
-.review_cardImg{
-    border-radius: 50%;
-    margin-bottom: 5px;
-    background-color: red;
-    height: 70px;
-    width: 70px;
-}
-.review_cardDate{
-    color: gray;
-    font-size: 11px;
-}
-.review_left{
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    width: 20%;
-}
-.review_right{
-    padding: 20px;
-    width: 80%;
-}
-.review_cardProfileName{
-    font-size: 13px;
-    font-weight: bold;
-    margin: 1px;
-}
-.review_cardComment{
-    font-size: 13px;
-    height: fit-content;
-}
+
 .hotel_rating_div{
     width: 25%;
     display: flex;
@@ -121,15 +89,6 @@
 }
 .hotel_verdict{
     list-style: none;
-}
-.hotel_cons,.hotel_pros{
-    font-size: 12px;
-}
-.hotel_pros{
-    color: #00aa00;
-}
-.hotel_cons{
-    color: #FF461E;
 }
 .hotel_review_div{
     display: flex;
@@ -149,13 +108,7 @@
     width: fit-content;
     border:none;
 }
-.love_button{
-    width: min-content;
-    padding: 0;
-    height: fit-content;
-    background-color: transparent;
-    border: none;
-}
+
 .hotel_details{
     display: flex;
     flex-direction: column;
@@ -203,7 +156,7 @@
         font-size: 1rem;
     }
     .hotel_name{
-        font-size: .8rem;
+        font-size: .62rem;
     }
     .hotel_nightrates{
         font-size: 1rem;

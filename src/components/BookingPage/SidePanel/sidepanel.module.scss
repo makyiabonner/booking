@@ -5,6 +5,29 @@
     height: 92vh;
     box-sizing: border-box;
 }
+.EmptyHotelScroll{
+    display: grid;
+    place-content: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, $brand-info 50%, rgb(241, 145, 0) 80%);
+
+    > p{
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: $brand-primary;
+        animation: fadeIn 6s forwards;
+    }
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity:1;
+    }
+}
 .SearchTab{
     display: flex;
     gap: 1em;
@@ -35,6 +58,7 @@
 .Results__container{
     position: absolute;
     margin-top: .3em;
+    padding: 0;
     top: 100%;
     width: 20em;
     height: fit-content;
@@ -172,5 +196,14 @@
     }
     .HotelScroll{
         height: 100%;
+    }
+    .HotelScroll::-webkit-scrollbar{
+        background-color: whitesmoke;
+        width: .3rem;
+        scroll-behavior: auto;
+    }
+    .HotelScroll::-webkit-scrollbar-thumb{
+        background-color: rgba(0,0,0,.8);
+        border-radius: 20px;
     }
 }

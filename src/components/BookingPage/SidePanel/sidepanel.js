@@ -2,15 +2,16 @@ import HotelCard from '../HotelCard/hotelcard'
 import ResultsCard from '../ResultsCard/resultsCard';
 import styles from './sidepanel.module.scss';
 import { getLocation, getHotels, getHotelData } from '@/components/api';
-import { debounce, getDropdownOptions, TODAY, TOMORROW } from '@/components/util';
+import { debounce, TODAY, TOMORROW } from '@/components/util';
 import { useState } from 'react';
 
-export default function Sidepanel({ selectedHotel }){
+export default function Sidepanel({ selectedHotel, setPresetHotel }){
     const [inputContent, setInputContent] = useState('');
     const [debounceInput, setDebounceInput] = useState('');
     const [isActive, setIsActive] = useState(false);
     const [searchList, setSearchList] = useState([]);
     const [hotelList, setHotelList] = useState([]);
+    const [selectedID, setSelectedID] = useState(hotelList[0]?.hotel_id || null);
     const [destID, setDestID] = useState('');
 
     TOMORROW.setDate(TODAY.getDate() + 1);
@@ -24,7 +25,6 @@ export default function Sidepanel({ selectedHotel }){
         const result = await getHotelData(hotelID, inDate, outDate);
         setHotelInfo(result);
         selectedHotel(hotelInfo);
-        console.log(hotelInfo)
     };
     
     
@@ -57,6 +57,7 @@ export default function Sidepanel({ selectedHotel }){
             const hotelResults = await getHotels(destID, inDate, outDate);
             console.log("Hotel Results:", hotelResults);
             setHotelList(hotelResults.result);
+            setPresetHotel(hotelList[0]);
         } catch (error) {
             console.error("Error fetching hotels:", error);
         }
@@ -99,6 +100,7 @@ export default function Sidepanel({ selectedHotel }){
             hotelList.map(hotel => {
                 return (
                     <HotelCard 
+                        key={hotel.hotel_id}
                         details = {{
                             img : hotel.max_photo_url,
                             name : hotel.hotel_name,
@@ -106,8 +108,12 @@ export default function Sidepanel({ selectedHotel }){
                             price : hotel.price_breakdown.gross_price,
                             review : hotel.review_score
                         }}
-                        hotelID={hotel.hotel_id}
-                        onSelect={() => handleClickedHotel(hotel.hotel_id)}
+                        isSelected={selectedID === hotel.hotel_id}
+                        onSelect={() => {
+                            setSelectedID(hotel.hotel_id)
+                            handleClickedHotel(selectedID)
+                            console.log(hotel.hotel_id)
+                        }}
                     />
                 )})
         )
@@ -128,7 +134,7 @@ export default function Sidepanel({ selectedHotel }){
                             required 
                         />
                         <div>
-                            {searchList.length > 0 ? getSearchList() : null}
+                            {searchList && searchList.length > 0 ? getSearchList() : null}
                         </div>
                     </label>
                     <button className={styles.SubmitButton} type='button' onClick={() => handleGetHotels(destID)}>Submit</button>
@@ -152,7 +158,11 @@ export default function Sidepanel({ selectedHotel }){
                 </div>
             </form>
             <section className={styles.HotelScroll}>
-                {hotelList.length > 0 ? getHotelList() : null}
+                {hotelList && hotelList.length > 0 ? 
+                    getHotelList() : 
+                    <div className={styles.EmptyHotelScroll}>
+                        <p>Well this is awkward...</p>
+                    </div>}
             </section>
         </div>
     )

@@ -5,7 +5,6 @@ export default function ResultsCard({city, region}){
         <button
             type='button' 
             className={`${styles.Card} ${styles.hover}`}
-            onHover
             >
             <img src='./images/location-icon.png'></img>
             <div>

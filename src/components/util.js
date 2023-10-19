@@ -12,6 +12,31 @@ export const debounce = (func, delay) =>{
     }
 }
 
+export const checkValidInputs = (city,checkIn,checkOut, func) => {
+    if (!city) {
+        return 'Please enter city';
+    }
+
+    if (!checkIn) {
+        return 'Please enter check-in date';
+    }
+
+    if (!checkOut) {
+        return 'Please enter check-out date';
+    }
+
+    if (checkOut < checkIn || checkOut < TODAY) {
+        return 'Check-out dates cannot be before Check-in dates';
+    }
+
+    if (checkIn < TODAY) {
+        return 'Check-in dates cannot be before the current date';
+    }
+
+    if (typeof func === 'function') {
+        return func;
+    }
+}
 
 export const getDropdownOptions = (selectedOption) => {
     const options = [];
