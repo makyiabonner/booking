@@ -71,6 +71,22 @@
     }
 
 }
+@media (min-width: 1116px) and (max-width: 1241px){
+    .card_left {
+        img {
+            width: 100px;
+            height: 100px;
+        }
+    }
+}
+@media (min-width: 1242px) and (max-width: 1316px) {
+    .card_left {
+        img {
+            width: clamp(3rem, 22vw, 9rem);
+            height: clamp(3rem, 13vh, 7rem);
+        }
+    }
+}
 @media (max-width: 446px) {
     .card_left {
         img {

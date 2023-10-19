@@ -52,7 +52,7 @@ export default function Viewhotel({ selectedHotel, preset }){
             </div>
             <section className={styles.hotel_model} 
                 style={{
-        //            background:`${hotel && photoGallery.length > 0? `url(${currentSlide})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
+                    backgroundImage:`${hotel && photoGallery.length > 0? `url(${currentSlide})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
                     backgroundSize:'cover',
                     backgroundRepeat:'no-repeat',
                     backgroundPosition:'center'
