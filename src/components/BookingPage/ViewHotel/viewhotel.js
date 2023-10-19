@@ -55,11 +55,7 @@ export default function Viewhotel({ selectedHotel, preset }){
             </div>
             <section className={styles.hotel_model} 
                 style={{
-<<<<<<< HEAD
                     backgroundImage:`${hotel && photoGallery.length > 0? `url(${currentSlide})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
-=======
-                    background:`${hotel && photoGallery.length > 0? `url(${currentSlide})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
->>>>>>> parent of 981c4c7 (refactored hotelcard responsiveness)
                     backgroundSize:'cover',
                     backgroundRepeat:'no-repeat',
                     backgroundPosition:'center'

@@ -2,7 +2,7 @@
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '5bb26deebdmsh3679709af731a1dp1cbce2jsn24de70c1b1aa',
+		'X-RapidAPI-Key': 'a9333e717fmsh3b7741a255b60d6p14f4b4jsn75e89e2dad03',
     	'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
 	}
 };

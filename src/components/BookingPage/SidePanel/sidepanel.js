@@ -39,7 +39,7 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
     const debounceApiCall = debounce(async (inputValue) => {
         const searchResults = await getLocation(inputValue);
         setSearchList(searchResults);
-    }, 700);
+    }, 900);
 
     const handleInputChange = async (event) => {
         const input = event.target.value;
