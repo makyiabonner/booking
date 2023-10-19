@@ -22,9 +22,17 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
    
     
     const handleClickedHotel = async (hotelID) => {
-        const result = await getHotelData(hotelID, inDate, outDate);
-        setHotelInfo(result);
-        selectedHotel(hotelInfo);
+        try {
+            const result = await getHotelData(hotelID, inDate, outDate);
+            
+            setHotelInfo((prevHotel) => {
+                selectedHotel(result)
+                return result
+            });
+        }
+        catch (error) {
+            console.error(error)
+        }
     };
     
     
