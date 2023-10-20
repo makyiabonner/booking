@@ -31,13 +31,12 @@ export default function Viewhotel({ selectedHotel, preset }){
             return (
                 <Carousel.Item key={index}>
                     <img
+                        className={styles.hotel_img}
                         src = {photo.url_original} 
                         style={{
                             backgroundImage:`${hotel && photoGallery.length > 0? `url(${photo.url_original})` : `linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`}`,
                             backgroundSize:'cover',
                             backgroundRepeat:'no-repeat',
-                            width: '100%',
-                            height: '100%',
                             backgroundPosition:'center',
                         }}
                     />
