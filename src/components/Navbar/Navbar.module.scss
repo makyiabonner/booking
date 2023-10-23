@@ -9,6 +9,18 @@
     margin:auto;
     padding-left:0px;
 }
+.interactions__Div{
+    display: flex;
+    justify-content: space-between;
+    width: 6rem;
+}
+.search__Button{
+    display: grid;
+    place-content: center;
+    background-color: transparent;
+    border: 0;
+    justify-self: flex-end;
+}
 .nav_links{
     text-decoration: none;
     color: grey;

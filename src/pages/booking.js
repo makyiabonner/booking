@@ -6,6 +6,7 @@ import Nav from '@/components/Navbar/Navbar'
 import { useState } from 'react'
 import Sidepanel from '@/components/BookingPage/SidePanel/sidepanel'
 import Viewhotel from '@/components/BookingPage/ViewHotel/viewhotel'
+import MobileSearchScreen from '@/components/BookingPage/MobileSearchScreen/MobileSearchScreen'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,6 +24,7 @@ export default function Booking(){
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link rel="icon" href="/favicon.ico" />
             </Head>
+            <MobileSearchScreen toggleShow={true}/>
             <main className={styles.main}>
                 <Register 
                   isActive={isActive} 

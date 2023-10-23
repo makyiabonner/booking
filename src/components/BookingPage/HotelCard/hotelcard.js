@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './hotelcard.module.scss';
 
 export default function HotelCard({ details, onSelect, isSelected}){
