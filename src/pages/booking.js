@@ -12,9 +12,12 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Booking(){
     const [ isActive, setIsActive ] = useState(false);
+    const [ isSearchActive, setIsSearchActive ] = useState(false);
+    const [ selectedHotel, setSelectedHotel ] = useState(null);
+    const [ presetHotel, setPresetHotel ] = useState(null);
+
     const toggleActiveState = () => setIsActive(!isActive);
-    const [selectedHotel, setSelectedHotel] = useState(null);
-    const [presetHotel, setPresetHotel] = useState(null)
+    const toggleSearchState = () => setIsSearchActive(!isSearchActive);
     
     return (
         <>
@@ -24,14 +27,17 @@ export default function Booking(){
               <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link rel="icon" href="/favicon.ico" />
             </Head>
-            <MobileSearchScreen toggleShow={true}/>
+            <MobileSearchScreen 
+              toggleShow={isSearchActive}
+              toggleHide={toggleSearchState}
+            />
             <main className={styles.main}>
                 <Register 
                   isActive={isActive} 
                   toggleActiveState={toggleActiveState}
                 />
                 <Nav 
-                  isActive={isActive} 
+                  toggleSearch={toggleSearchState}
                   toggleActiveState={toggleActiveState} 
                 />
                 <section className='d-flex w-100'>
