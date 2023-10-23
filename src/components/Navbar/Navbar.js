@@ -16,17 +16,17 @@ export default function Nav({ toggleSearch, toggleActiveState }){
                             src='/images/Savvy.jpg' 
                             alt='Savvy'/>
                     </div>
-                    <div className={styles.div}>
-                        <ul className={`${styles.ul} d-none d-lg-flex`}>
+                    <div className={styles.Interactions__div}>
+                        <ul className={styles.ul}>
                             <li><a className={styles.nav_links} href='/'><p className='p-0 m-0'>Home</p></a></li>
                             <li><a className={styles.nav_links} href='/booking'><p className='p-0 m-0'>Booking</p></a></li>
                         </ul>
                         <button 
-                            className='btn btn-secondary px-3 py-1 rounded d-none d-lg-flex'
+                            className='btn btn-secondary px-3 py-1 rounded'
                             onClick={toggleActiveState}
                         >Sign In</button>
                     </div>
-                    <div className={`${styles.interactions__Div} d-lg-none d-sm-flex`}>
+                    <div className={styles.MobileInteractions__div}>
                         <Button 
                             variant='primary' 
                             className={styles.search__Button} 
