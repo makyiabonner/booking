@@ -1,4 +1,5 @@
 import styles from './Navbar.module.scss';
+import { useRouter } from 'next/router'
 import { Button, Offcanvas } from 'react-bootstrap';
 import { useState } from 'react';
 
@@ -6,6 +7,7 @@ export default function Nav({ toggleSearch, toggleActiveState }){
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const router = useRouter()
     
     return (
         <>
@@ -29,7 +31,7 @@ export default function Nav({ toggleSearch, toggleActiveState }){
                     <div className={styles.MobileInteractions__div}>
                         <Button 
                             variant='primary' 
-                            className={styles.search__Button} 
+                            className={router.pathname === '/booking' ? styles.search__Button : 'd-none'} 
                             onClick={toggleSearch}
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
