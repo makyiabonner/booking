@@ -4,8 +4,9 @@ import styles from './sidepanel.module.scss';
 import { getLocation, getHotels, getHotelData } from '@/components/api';
 import { debounce, TODAY, TOMORROW } from '@/components/util';
 import { useState } from 'react';
+import { SearchArrivalInput, SearchDepartureInput, SearchLocationInput, Search } from '../MobileSearchScreen/MobileSearchScreen';
 
-export default function Sidepanel({ selectedHotel, setPresetHotel }){
+export default function Sidepanel({ selectedHotel }){
     const [inputContent, setInputContent] = useState('');
     const [debounceInput, setDebounceInput] = useState('');
     const [isActive, setIsActive] = useState(false);
@@ -77,32 +78,6 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
         setIsActive(false);
     };
 
-    const getSearchList = () => {
-        return (
-            <ul className={`${styles.Results__container} ${inputContent && isActive? styles.show : styles.hidden}`}>
-                {searchList.map((item) => {
-                    const updatedInput = `${item.name}, ${item.region}`;
-
-                    return (
-                        <li 
-                            className={styles.Search__list}
-                            onClick={() => {
-                                handleResultClick(updatedInput);
-                                setDestID(() => item.dest_id);
-                            }}
-                            >
-                            <ResultsCard 
-                                key={item.id} 
-                                city={item.name} 
-                                region={item.region}
-                            />
-                        </li>
-                        )
-                    })
-                }
-            </ul>
-        )
-    }
 
     const getHotelList = () => {
         return(
@@ -128,37 +103,17 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
         <div className={styles.SidePanel}>
             <form className={styles.SearchTab}>
                 <div className={styles.Location}>
-                    <label className={`${styles.label}`}>Locations
-                        <input 
-                            value={inputContent}
-                            className={styles.Location__text} 
-                            type='text'
-                            onChange={handleInputChange}
-                            onFocus={() => setIsActive(true)}
-                            onBlur={() => handleInputBlur}
-                            required 
-                        />
-                        <div>
-                            {searchList && searchList.length > 0 ? getSearchList() : null}
-                        </div>
+                    <label className={`${styles.label}`}>Where To?
+                        <SearchLocationInput />
                     </label>
-                    <button className={styles.SubmitButton} type='button' onClick={() => handleGetHotels(destID)}>Submit</button>
+                        <Search />
                 </div>
                 <div className={styles.Date__row}>
-                    <label className={`${styles.label} d-flex`}>Check-In Date
-                        <input 
-                            className={styles.Date__input} 
-                            type='date'
-                            value={inDate}
-                            onChange={handleCheckInDateChange}                            
-                        />
+                    <label className={`${styles.label} d-flex`}>Arrival
+                        <SearchArrivalInput />
                     </label>
-                    <label className={`${styles.label} d-flex`}>Check-Out Date
-                        <input 
-                            className={styles.Date__input} 
-                            type='date'
-                            value={outDate}
-                            onChange={handleCheckOutDateChange}                        />
+                    <label className={`${styles.label} d-flex`}>Departure
+                        <SearchDepartureInput />
                     </label>
                 </div>
             </form>

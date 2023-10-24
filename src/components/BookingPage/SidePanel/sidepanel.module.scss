@@ -78,19 +78,7 @@
         display: none;
     }
 }
-@keyframes show {
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-        display: block;
-    }
-}
 
-.show{
-    animation: show .3s alternate
-}
 .hidden{
     display: none;
 }

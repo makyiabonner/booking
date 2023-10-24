@@ -56,15 +56,30 @@ export default function Viewhotel({ selectedHotel, preset }){
               </Offcanvas.Body>
             </Offcanvas>
             <section className={styles.hotel_model}> 
-                <Carousel indicators={false} onSelect={handleSlide}>
-                    {photos()}
-                </Carousel>
-                <div className={blockID? `${styles.hotel_details}` : `${styles.hide}`}>
-                    <h1 className={blockID? `${styles.hotel_name}` : `${styles.hide}`}>{hotel ? name : 0}</h1>
-                    <h3 className={blockID? `${styles.hotel_nightrates}` : `${styles.hide}`}>${Math.floor(price)}/Night</h3>
-                    <button className={blockID? `${styles.reserve_button}` : `${styles.hide}`} onClick={handleShow}>Reserve</button>
-                </div>
-                    <p className={blockID? `${styles.hotel_photocount}` : `${styles.hide}`}> {`${currentSlide + 1}/${photoGallery.length}`}</p>
+                {checkSelectHotel()? 
+                    (
+                        <>
+                            <Carousel indicators={false} onSelect={handleSlide}>
+                                {photos()}
+                            </Carousel>
+                            <div className={blockID? `${styles.hotel_details}` : `${styles.hide}`}>
+                                <h1 className={blockID? `${styles.hotel_name}` : `${styles.hide}`}>{hotel ? name : 0}</h1>
+                                <h3 className={blockID? `${styles.hotel_nightrates}` : `${styles.hide}`}>${Math.floor(price)}/Night</h3>
+                                <button className={blockID? `${styles.reserve_button}` : `${styles.hide}`} onClick={handleShow}>Reserve</button>
+                            </div>
+                            <p className={blockID? `${styles.hotel_photocount}` : `${styles.hide}`}> {`${currentSlide + 1}/${photoGallery.length}`}</p>
+                        </>
+                    ) 
+                    : (
+                        <div
+                            className= 'w-100 h-100'
+                            style={{
+                                background:`linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`,
+                            }}
+                        >
+                        </div>
+                    )}
+                
             </section>
         </>
     )
