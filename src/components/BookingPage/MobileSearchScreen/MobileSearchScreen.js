@@ -94,11 +94,12 @@ export function SearchLocationInput () {
     const getSearchList = () => {
         return (
             <ul className={`${styles.Results__container} ${inputContent && isActive? styles.show : styles.hidden}`}>
-                {searchList.map((item) => {
+                {searchList.map((item,index) => {
                     const updatedInput = `${item.name}, ${item.region}`;
 
                     return (
                         <li 
+                            key={index}
                             className={styles.Search__list}
                             onClick={() => {
                                 handleResultClick(updatedInput);
