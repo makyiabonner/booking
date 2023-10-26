@@ -5,8 +5,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import ResultsCard from '../ResultsCard/resultsCard';
 
-export default function MobileSearchScreen ({ toggleShow, toggleHide, checkIn, checkOut }) {
-    const [debounceInput, setDebounceInput] = useState('');
+export default function MobileSearchScreen ({ toggleShow, toggleHide, handleHotelList }) {
     const [isActive, setIsActive] = useState(false);
     const [searchList, setSearchList] = useState([]);
     const [selectedID, setSelectedID] = useState(null);
@@ -17,7 +16,10 @@ export default function MobileSearchScreen ({ toggleShow, toggleHide, checkIn, c
     const [outDate, setOutDate] = useState(TOMORROW.toISOString().split('T')[0]);
     const [hotelInfo, setHotelInfo] = useState(null);
 
-   
+    const handleSelectedDestID = (input) => setDestID(input);
+    const handleCheckInDateChange = (event) => setInDate(event.target.value);
+    const handleCheckOutDateChange = (event) => setOutDate(event.target.value);
+    const handleSearch = (input) => (handleHotelList(input));
     
     const handleClickedHotel = async (hotelID) => {
         try {
@@ -47,28 +49,31 @@ export default function MobileSearchScreen ({ toggleShow, toggleHide, checkIn, c
             </Button>
             <form>
                 <label className={styles.label}>Where To?</label>
-                    <SearchLocationInput />
+                    <SearchLocationInput handleSelectedDestID={handleSelectedDestID}/>
                 <div>
                     <label className={styles.label}>Arrival
-                        <SearchArrivalInput />
+                        <SearchArrivalInput inDate={inDate} handleCheckInDateChange={handleCheckInDateChange} />
                     </label>
                     <label className={styles.label}>Departure
-                        <SearchDepartureInput />
+                        <SearchDepartureInput outDate={outDate} handleCheckOutDateChange={handleCheckOutDateChange} />
                     </label>
                 </div>
-                <Search toggleHide={toggleHide}/>
+                <MobileSearch 
+                    toggleHide={toggleHide}
+                    destID={destID}
+                    inDate={inDate}
+                    outDate={outDate}
+                    handleSearch={handleSearch}
+                />
             </form>
         </section>
     )
 }
 
-export function SearchLocationInput () {
+export function SearchLocationInput ({ handleSelectedDestID }) {
     const [searchList, setSearchList] = useState([]);
     const [isActive, setIsActive] = useState(false);
     const [inputContent, setInputContent] = useState('');
-    const [debounceInput, setDebounceInput] = useState('');
-    const [destID, setDestID] = useState('');
-
 
     const handleResultClick = (selectedValue) => {
         setInputContent(() => selectedValue);
@@ -87,7 +92,6 @@ export function SearchLocationInput () {
     const handleInputChange = async (event) => {
         const input = event.target.value;
         setInputContent(input);
-        setDebounceInput(input);
         debounceApiCall(input)
     };
 
@@ -103,7 +107,7 @@ export function SearchLocationInput () {
                             className={styles.Search__list}
                             onClick={() => {
                                 handleResultClick(updatedInput);
-                                setDestID(() => item.dest_id);
+                                handleSelectedDestID(item.dest_id);
                             }}
                             >
                             <ResultsCard 
@@ -138,29 +142,48 @@ export function SearchLocationInput () {
     )
 }
 
-export function Search ({ toggleHide }) {
-    const [hotelList, setHotelList] = useState([]);
-
+export function MobileSearch ({ toggleHide, destID, inDate, outDate, handleSearch }) {
     const handleGetHotels = async () => {
         try {
             const hotelResults = await getHotels(destID, inDate, outDate);
             console.log("Hotel Results:", hotelResults);
-            setHotelList(hotelResults.result);
+            handleSearch(hotelResults.result);
         } catch (error) {
             console.error("Error fetching hotels:", error);
         }
     }
 
-    return <Button className={styles.search} type='button' onClick={() => toggleHide && handleGetHotels(destID)}>Search</Button>
+    return (
+        <Button 
+            className={styles.search} 
+            type='button' 
+            onClick={() => (handleGetHotels(destID) && toggleHide(true))}
+        >
+            Search
+        </Button>)
+}
+export function Search ({ destID, inDate, outDate, handleSearch }) {
+    const handleGetHotels = async () => {
+        try {
+            const hotelResults = await getHotels(destID, inDate, outDate);
+            console.log("Hotel Results:", hotelResults);
+            handleSearch(hotelResults.result);
+        } catch (error) {
+            console.error("Error fetching hotels:", error);
+        }
+    }
+
+    return (
+        <Button 
+            className={styles.search} 
+            type='button' 
+            onClick={() => (handleGetHotels(destID))}
+        >
+            Search
+        </Button>)
 }
 
-export function SearchArrivalInput () {
-    const [inDate, setInDate] = useState(TODAY.toISOString().split('T')[0]);
-    
-    const handleCheckInDateChange = (event) => {
-        setInDate(event.target.value);
-    };
-
+export function SearchArrivalInput ({ inDate, handleCheckInDateChange }) {
     return (
         <input 
             className={styles.input} 
@@ -171,12 +194,7 @@ export function SearchArrivalInput () {
     )
 }
 
-export function SearchDepartureInput () {
-    const [outDate, setOutDate] = useState(TOMORROW.toISOString().split('T')[0]);
-
-    const handleCheckOutDateChange = (event) => {
-        setOutDate(event.target.value);
-    };
+export function SearchDepartureInput ({ outDate, handleCheckOutDateChange }) {
     return (
         <input 
             className={styles.input} 

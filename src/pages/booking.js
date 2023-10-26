@@ -15,9 +15,12 @@ export default function Booking(){
     const [ isSearchActive, setIsSearchActive ] = useState(false);
     const [ selectedHotel, setSelectedHotel ] = useState(null);
     const [ presetHotel, setPresetHotel ] = useState(null);
+    const [ hotelList, setHotelList ] = useState([])
 
     const toggleActiveState = () => setIsActive(!isActive);
     const toggleSearchState = () => setIsSearchActive(!isSearchActive);
+    const handleHotelList = (value) => setHotelList(value);
+
     
     return (
         <>
@@ -30,6 +33,7 @@ export default function Booking(){
             <MobileSearchScreen 
               toggleShow={isSearchActive}
               toggleHide={toggleSearchState}
+              handleHotelList={handleHotelList}
             />
             <main className={styles.main}>
                 <Register 
@@ -42,6 +46,8 @@ export default function Booking(){
                 />
                 <section className='d-flex w-100'>
                     <Sidepanel 
+                      hotelList={hotelList}
+                      handleHotelList={handleHotelList}
                       selectedHotel={setSelectedHotel} 
                       setPresetHotel={setPresetHotel}
                     />

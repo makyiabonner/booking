@@ -6,12 +6,11 @@ import { debounce, TODAY, TOMORROW } from '@/components/util';
 import { useState } from 'react';
 import { SearchArrivalInput, SearchDepartureInput, SearchLocationInput, Search } from '../MobileSearchScreen/MobileSearchScreen';
 
-export default function Sidepanel({ selectedHotel }){
+export default function Sidepanel({ selectedHotel, hotelList, handleHotelList}){
     const [inputContent, setInputContent] = useState('');
     const [debounceInput, setDebounceInput] = useState('');
     const [isActive, setIsActive] = useState(false);
     const [searchList, setSearchList] = useState([]);
-    const [hotelList, setHotelList] = useState([]);
     const [selectedID, setSelectedID] = useState(null);
     const [destID, setDestID] = useState('');
 
@@ -20,29 +19,20 @@ export default function Sidepanel({ selectedHotel }){
     const [outDate, setOutDate] = useState(TOMORROW.toISOString().split('T')[0]);
     const [hotelInfo, setHotelInfo] = useState(null);
 
-   
+    const handleSelectedDestID = (input) => setDestID(input);
+    const handleCheckInDateChange = (event) => setInDate(event.target.value);
+    const handleCheckOutDateChange = (event) => setOutDate(event.target.value);
+    const handleSearch = (input) => (handleHotelList(input));
     
     const handleClickedHotel = async (hotelID) => {
         try {
             const result = await getHotelData(hotelID, inDate, outDate);
-            
-            setHotelInfo((prevHotel) => {
-                selectedHotel(result)
-                return result
-            });
+            setHotelInfo(result);
+            selectedHotel(result);
         }
         catch (error) {
             console.error(error)
         }
-    };
-    
-    
-    const handleCheckInDateChange = (event) => {
-        setInDate(event.target.value);
-    };
-
-    const handleCheckOutDateChange = (event) => {
-        setOutDate(event.target.value);
     };
 
     const debounceApiCall = debounce(async (inputValue) => {
@@ -65,7 +55,6 @@ export default function Sidepanel({ selectedHotel }){
         try {
             const hotelResults = await getHotels(destID, inDate, outDate);
             console.log("Hotel Results:", hotelResults);
-            setHotelList(hotelResults.result);
             console.log(hotelList)
             setPresetHotel(hotelList[0]);
         } catch (error) {
@@ -104,16 +93,21 @@ export default function Sidepanel({ selectedHotel }){
             <form className={styles.SearchTab}>
                 <div className={styles.Location}>
                     <label className={`${styles.label}`}>Where To?
-                        <SearchLocationInput />
+                    <SearchLocationInput handleSelectedDestID={handleSelectedDestID}/>
                     </label>
-                        <Search />
+                    <Search 
+                        destID={destID}
+                        inDate={inDate}
+                        outDate={outDate}
+                        handleSearch={handleSearch}
+                    />
                 </div>
                 <div className={styles.Date__row}>
                     <label className={`${styles.label} d-flex`}>Arrival
-                        <SearchArrivalInput />
+                        <SearchArrivalInput inDate={inDate} handleCheckInDateChange={handleCheckInDateChange} />
                     </label>
                     <label className={`${styles.label} d-flex`}>Departure
-                        <SearchDepartureInput />
+                        <SearchDepartureInput outDate={outDate} handleCheckOutDateChange={handleCheckOutDateChange} />
                     </label>
                 </div>
             </form>
