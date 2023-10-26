@@ -24,42 +24,34 @@
     gap: 2rem;
     width: clamp(10em,90%,120em);
     
-    div &:nth-child(1){
-        > div:nth-child(1){
-            background-image: url('../../../../public/images/continueJourney.webp');
-            background-size: cover;
-            background-position: center;
-            box-shadow: inset  33em 0em 7em rgb(7, 3, 14);
-            width: 90%;
-            height: 20em;
-            border-radius: 1em;
+    .Getaway__Link{
+        background-image: url('../../../../public/images/continueJourney.webp');
+        background-size: cover;
+        background-position: center;
+        box-shadow: inset  33em 0em 7em rgb(7, 3, 14);
+        width: 90%;
+        height: clamp(9em,20vh,20em);
+        border-radius: 1em;
+        text-decoration: none;
             
-            > div{
-                height: 100%;
-                width: fit-content;
-                background-color: white;
-                box-shadow: inset 0 0 1.2rem grey;
-                border-radius: 15px 0 0 15px;
+        > div{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            border-radius: 15px 0 0 15px;
 
-                h1{
-                    padding: .5em;
-                    border-radius: 15px 0 0 0;
-                    width: max-content;
-                    background-color: red;
-                    color: white;
-                    position: relative;
-                }
-                h1::after{
-                    content:'';
-                    position: absolute;
-                    rotate: 45deg;
-                    bottom: -14%;
-                    right: -2.6%;
-                    height: 1.5rem;
-                    width: 1.5rem;
-                    background-color: black;
-                }
+            h1{
+                font-size: clamp(1em, 8vw, 3em);
+                padding: .5em;
+                border-radius: 15px 0 0 0;
+                width: max-content;
+                background-color: transparent;
+                color: white;
+                position: relative;
             }
+           
         }
     }
 
@@ -79,7 +71,6 @@
     > div:nth-child(1){
         display: flex;
         justify-content: flex-end;
-        width: 76%;
         background-color: #867575;
         background-size: contain;
         background-position: 50% 10%;
@@ -90,6 +81,7 @@
         box-sizing: border-box;
         padding-right: 3em;
         padding-top: 4em;
+        width: 76%;
 
         h1{
             font-weight: bold;

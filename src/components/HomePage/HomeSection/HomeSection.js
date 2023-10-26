@@ -1,4 +1,5 @@
 import styles from './HomeSection.module.scss';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import Register from '@/components/Register/Register';
 
@@ -21,11 +22,13 @@ export default function HomeSection(){
             </section>
             <div className={styles.options}>
                 <main className={styles.options__section} style={{ transform:`translateY(${offsetY * -.04}px)`}}>
-                    <div>
+                    <Link className={styles.Getaway__Link} href='/booking'>
                         <div>
-                            <h1>Continue last searched</h1>
+                            <div>
+                                <h1>Find Your Getaway</h1>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                     <div className={styles.options__section_second_row}>
                         <div>
                             <h1>Coming Soon<br></br>To Mobile</h1>
