@@ -71,12 +71,10 @@ export default function Viewhotel({ selectedHotel, preset }){
                         </>
                     ) 
                     : (
-                        <div
-                            className= 'w-100 h-100'
-                            style={{
-                                background:`linear-gradient(45deg, #FFC700 1%, rgb(241, 145, 0) 10%)`,
-                            }}
-                        >
+                        <div className={styles.placeholder__screen}>
+                            <div className={styles.placeholder__screen__ball1}></div>
+                            <div className={styles.placeholder__screen__ball2}></div>
+                            <div className={styles.placeholder__screen__ball3}></div>
                         </div>
                     )}
                 
