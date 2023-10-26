@@ -20,8 +20,8 @@ export default function Nav({ toggleSearch, toggleActiveState }){
                     </div>
                     <div className={styles.Interactions__div}>
                         <ul className={styles.ul}>
-                            <li><a className={styles.nav_links} href='/'><p className='p-0 m-0'>Home</p></a></li>
-                            <li><a className={styles.nav_links} href='/booking'><p className='p-0 m-0'>Booking</p></a></li>
+                            <li><Link className={styles.nav_links} href='/'><p className='p-0 m-0'>Home</p></Link></li>
+                            <li><Link className={styles.nav_links} href='/booking'><p className='p-0 m-0'>Booking</p></Link></li>
                         </ul>
                         <button 
                             className='btn btn-secondary px-3 py-1 rounded'
@@ -58,8 +58,8 @@ export default function Nav({ toggleSearch, toggleActiveState }){
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <ul className={`${styles.ul} flex-column w-100 mx-5 gap-4`}>
-                        <li><a className={styles.nav_links} href='/'><p className='p-0 m-0'>Home</p></a></li>
-                        <li><a className={styles.nav_links} href='/booking'><p className='p-0 m-0'>Booking</p></a></li>
+                        <li><Link className={styles.nav_links} href='/'><p className='p-0 m-0'>Home</p></Link></li>
+                        <li><Link className={styles.nav_links} href='/booking'><p className='p-0 m-0'>Booking</p></Link></li>
                     </ul>
                 </Offcanvas.Body>
             </Offcanvas>

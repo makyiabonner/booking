@@ -45,9 +45,9 @@ export default function Home() {
             <p className={styles.containerDesc}>No more time-consuming phone calls, now<br></br> you have the power to book services at<br></br> your convenience.</p>
           </div>
           <div className={`mt-5 flex-column flex-lg-row gap-5 align-items-sm-center align-items-md-center gap-lg-0 ${styles.containerImgs}`}>
-                {containerImgs.map((img) => {
+                {containerImgs.map((img, index) => {
                       return (
-                        <div>
+                        <div key={index}>
                           <div 
                               className={styles.reservation_category} 
                               style={{backgroundImage:`url(${img.src})`, 
