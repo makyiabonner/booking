@@ -1,4 +1,5 @@
 import styles from './Navbar.module.scss';
+import Link from 'next/link';
 import { useRouter } from 'next/router'
 import { Button, Offcanvas } from 'react-bootstrap';
 import { useState } from 'react';
