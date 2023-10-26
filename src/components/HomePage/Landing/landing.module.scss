@@ -57,12 +57,13 @@
 .Landing{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   background: url('../../../canyon.webp');
   background-size: cover;
   background-position: 50% 70%;
   box-shadow: 0px 30px 15px 0 rgba(0, 0, 0, .3);
-  height:47em;
+  height:clamp(10em, 90vh, 47em);
+  height:clamp(10em, 90svh, 47em);
 }
 .Hero{
   &__content{

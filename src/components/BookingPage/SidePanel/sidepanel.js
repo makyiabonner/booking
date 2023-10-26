@@ -4,96 +4,35 @@ import styles from './sidepanel.module.scss';
 import { getLocation, getHotels, getHotelData } from '@/components/api';
 import { debounce, TODAY, TOMORROW } from '@/components/util';
 import { useState } from 'react';
+import { SearchArrivalInput, SearchDepartureInput, SearchLocationInput, Search } from '../MobileSearchScreen/MobileSearchScreen';
 
-export default function Sidepanel({ selectedHotel, setPresetHotel }){
-    const [inputContent, setInputContent] = useState('');
-    const [debounceInput, setDebounceInput] = useState('');
-    const [isActive, setIsActive] = useState(false);
-    const [searchList, setSearchList] = useState([]);
-    const [hotelList, setHotelList] = useState([]);
-    const [selectedID, setSelectedID] = useState(hotelList[0]?.hotel_id || null);
+export default function Sidepanel({ selectedHotel, hotelList, handleHotelList}){
+    const [selectedID, setSelectedID] = useState(null);
     const [destID, setDestID] = useState('');
 
     TOMORROW.setDate(TODAY.getDate() + 1);
     const [inDate, setInDate] = useState(TODAY.toISOString().split('T')[0]);
     const [outDate, setOutDate] = useState(TOMORROW.toISOString().split('T')[0]);
-    const [hotelInfo, setHotelInfo] = useState(null);
 
-   
+    const handleSelectedDestID = (input) => setDestID(input);
+    const handleCheckInDateChange = (event) => setInDate(event.target.value);
+    const handleCheckOutDateChange = (event) => setOutDate(event.target.value);
+    const handleSearch = (input) => (handleHotelList(input));
     
     const handleClickedHotel = async (hotelID) => {
-        const result = await getHotelData(hotelID, inDate, outDate);
-        setHotelInfo(result);
-        selectedHotel(hotelInfo);
-    };
-    
-    
-    const handleCheckInDateChange = (event) => {
-        setInDate(event.target.value);
-    };
-
-    const handleCheckOutDateChange = (event) => {
-        setOutDate(event.target.value);
+        try {
+            const result = await getHotelData(hotelID, inDate, outDate);
+            selectedHotel(result);
+        }
+        catch (error) {
+            console.error(error)
+        }
     };
 
     const debounceApiCall = debounce(async (inputValue) => {
         const searchResults = await getLocation(inputValue);
         setSearchList(searchResults);
-    }, 700);
-
-    const handleInputChange = async (event) => {
-        const input = event.target.value;
-        setInputContent(input);
-        setDebounceInput(input);
-        debounceApiCall(input)
-    };
-    
-    const handleInputBlur = () => {
-        setTimeout(() => setIsActive(false), 200);
-    }
-    
-    const handleGetHotels = async () => {
-        try {
-            const hotelResults = await getHotels(destID, inDate, outDate);
-            console.log("Hotel Results:", hotelResults);
-            setHotelList(hotelResults.result);
-            setPresetHotel(hotelList[0]);
-        } catch (error) {
-            console.error("Error fetching hotels:", error);
-        }
-    }
-    
-    const handleResultClick = (selectedValue) => {
-        setInputContent(() => selectedValue);
-        setIsActive(false);
-    };
-
-    const getSearchList = () => {
-        return (
-            <ul className={`${styles.Results__container} ${inputContent && isActive? styles.show : styles.hidden}`}>
-                {searchList.map((item) => {
-                    const updatedInput = `${item.name}, ${item.region}`;
-
-                    return (
-                        <li 
-                            className={styles.Search__list}
-                            onClick={() => {
-                                handleResultClick(updatedInput);
-                                setDestID(() => item.dest_id);
-                            }}
-                            >
-                            <ResultsCard 
-                                key={item.id} 
-                                city={item.name} 
-                                region={item.region}
-                            />
-                        </li>
-                        )
-                    })
-                }
-            </ul>
-        )
-    }
+    }, 900);
 
     const getHotelList = () => {
         return(
@@ -109,11 +48,7 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
                             review : hotel.review_score
                         }}
                         isSelected={selectedID === hotel.hotel_id}
-                        onSelect={() => {
-                            setSelectedID(hotel.hotel_id)
-                            handleClickedHotel(selectedID)
-                            console.log(hotel.hotel_id)
-                        }}
+                        onSelect={() => handleClickedHotel(hotel.hotel_id) && setSelectedID(hotel.hotel_id)}
                     />
                 )})
         )
@@ -123,37 +58,22 @@ export default function Sidepanel({ selectedHotel, setPresetHotel }){
         <div className={styles.SidePanel}>
             <form className={styles.SearchTab}>
                 <div className={styles.Location}>
-                    <label className={`${styles.label}`}>Locations
-                        <input 
-                            value={inputContent}
-                            className={styles.Location__text} 
-                            type='text'
-                            onChange={handleInputChange}
-                            onFocus={() => setIsActive(true)}
-                            onBlur={() => handleInputBlur}
-                            required 
-                        />
-                        <div>
-                            {searchList && searchList.length > 0 ? getSearchList() : null}
-                        </div>
+                    <label className={`${styles.label}`}>Where To?
+                    <SearchLocationInput handleSelectedDestID={handleSelectedDestID}/>
                     </label>
-                    <button className={styles.SubmitButton} type='button' onClick={() => handleGetHotels(destID)}>Submit</button>
+                    <Search 
+                        destID={destID}
+                        inDate={inDate}
+                        outDate={outDate}
+                        handleSearch={handleSearch}
+                    />
                 </div>
                 <div className={styles.Date__row}>
-                    <label className={`${styles.label} d-flex`}>Check-In Date
-                        <input 
-                            className={styles.Date__input} 
-                            type='date'
-                            value={inDate}
-                            onChange={handleCheckInDateChange}                            
-                        />
+                    <label className={`${styles.label} d-flex`}>Arrival
+                        <SearchArrivalInput inDate={inDate} handleCheckInDateChange={handleCheckInDateChange} />
                     </label>
-                    <label className={`${styles.label} d-flex`}>Check-Out Date
-                        <input 
-                            className={styles.Date__input} 
-                            type='date'
-                            value={outDate}
-                            onChange={handleCheckOutDateChange}                        />
+                    <label className={`${styles.label} d-flex`}>Departure
+                        <SearchDepartureInput outDate={outDate} handleCheckOutDateChange={handleCheckOutDateChange} />
                     </label>
                 </div>
             </form>

@@ -4,8 +4,8 @@ export default function ResultsCard({city, region}){
     return(
         <button
             type='button' 
-            className={`${styles.Card} ${styles.hover}`}
-            >
+            className={styles.Card}
+        >
             <img src='./images/location-icon.png'></img>
             <div>
                 <h4 className={styles.Card__location}>{city}</h4>

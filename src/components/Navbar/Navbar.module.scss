@@ -9,6 +9,18 @@
     margin:auto;
     padding-left:0px;
 }
+.MobileInteractions__div{
+    display: flex;
+    justify-content: space-between;
+    width: 6rem;
+}
+.search__Button{
+    display: grid;
+    place-content: center;
+    background-color: transparent;
+    border: 0;
+    justify-self: flex-end;
+}
 .nav_links{
     text-decoration: none;
     color: grey;
@@ -39,7 +51,7 @@
     height: 100%;
     object-fit: cover;
 }
-.div{
+.Interactions__div{
     display: flex;
     align-items: center;
     gap:40px;
@@ -56,4 +68,24 @@
     justify-content: space-between;
     width: 90%;
     margin: auto;
+}
+
+@media (max-width: 1115px) {
+    .MobileInteractions__div {
+        display: flex;
+    }
+
+    .Interactions__div {
+        display: none;
+    }
+}
+
+@media (min-width: 1116px) {
+    .MobileInteractions__div {
+        display: none;
+    }
+
+    .Interactions__div {
+        display: flex;
+    }
 }
