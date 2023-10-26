@@ -6,44 +6,21 @@ import { Button } from 'react-bootstrap';
 import ResultsCard from '../ResultsCard/resultsCard';
 
 export default function MobileSearchScreen ({ toggleShow, toggleHide, handleHotelList }) {
-    const [isActive, setIsActive] = useState(false);
-    const [searchList, setSearchList] = useState([]);
-    const [selectedID, setSelectedID] = useState(null);
     const [destID, setDestID] = useState('');
 
     TOMORROW.setDate(TODAY.getDate() + 1);
     const [inDate, setInDate] = useState(TODAY.toISOString().split('T')[0]);
     const [outDate, setOutDate] = useState(TOMORROW.toISOString().split('T')[0]);
-    const [hotelInfo, setHotelInfo] = useState(null);
 
     const handleSelectedDestID = (input) => setDestID(input);
     const handleCheckInDateChange = (event) => setInDate(event.target.value);
     const handleCheckOutDateChange = (event) => setOutDate(event.target.value);
     const handleSearch = (input) => (handleHotelList(input));
-    
-    const handleClickedHotel = async (hotelID) => {
-        try {
-            const result = await getHotelData(hotelID, inDate, outDate);
-            
-            setHotelInfo((prevHotel) => {
-                selectedHotel(result)
-                return result
-            });
-        }
-        catch (error) {
-            console.error(error)
-        }
-    };
-    
-    const handleResultClick = (selectedValue) => {
-        setInputContent(() => selectedValue);
-        setIsActive(false);
-    };
 
     return (
         <section className={toggleShow ? styles.section : styles.hide}>
             <Button className={styles.close} onClick={toggleHide}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
                     <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
                 </svg>
             </Button>

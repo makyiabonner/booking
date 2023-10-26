@@ -7,17 +7,12 @@ import { useState } from 'react';
 import { SearchArrivalInput, SearchDepartureInput, SearchLocationInput, Search } from '../MobileSearchScreen/MobileSearchScreen';
 
 export default function Sidepanel({ selectedHotel, hotelList, handleHotelList}){
-    const [inputContent, setInputContent] = useState('');
-    const [debounceInput, setDebounceInput] = useState('');
-    const [isActive, setIsActive] = useState(false);
-    const [searchList, setSearchList] = useState([]);
     const [selectedID, setSelectedID] = useState(null);
     const [destID, setDestID] = useState('');
 
     TOMORROW.setDate(TODAY.getDate() + 1);
     const [inDate, setInDate] = useState(TODAY.toISOString().split('T')[0]);
     const [outDate, setOutDate] = useState(TOMORROW.toISOString().split('T')[0]);
-    const [hotelInfo, setHotelInfo] = useState(null);
 
     const handleSelectedDestID = (input) => setDestID(input);
     const handleCheckInDateChange = (event) => setInDate(event.target.value);
@@ -27,7 +22,6 @@ export default function Sidepanel({ selectedHotel, hotelList, handleHotelList}){
     const handleClickedHotel = async (hotelID) => {
         try {
             const result = await getHotelData(hotelID, inDate, outDate);
-            setHotelInfo(result);
             selectedHotel(result);
         }
         catch (error) {
@@ -39,34 +33,6 @@ export default function Sidepanel({ selectedHotel, hotelList, handleHotelList}){
         const searchResults = await getLocation(inputValue);
         setSearchList(searchResults);
     }, 900);
-
-    const handleInputChange = async (event) => {
-        const input = event.target.value;
-        setInputContent(input);
-        setDebounceInput(input);
-        debounceApiCall(input)
-    };
-    
-    const handleInputBlur = () => {
-        setTimeout(() => setIsActive(false), 200);
-    }
-    
-    const handleGetHotels = async () => {
-        try {
-            const hotelResults = await getHotels(destID, inDate, outDate);
-            console.log("Hotel Results:", hotelResults);
-            console.log(hotelList)
-            setPresetHotel(hotelList[0]);
-        } catch (error) {
-            console.error("Error fetching hotels:", error);
-        }
-    }
-    
-    const handleResultClick = (selectedValue) => {
-        setInputContent(() => selectedValue);
-        setIsActive(false);
-    };
-
 
     const getHotelList = () => {
         return(
