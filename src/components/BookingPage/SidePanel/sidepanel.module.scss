@@ -1,8 +1,9 @@
 @import '../../../styles/variables.scss';
 
 .SidePanel{
-    width: 35%;
+    min-width: 400px;
     height: 92vh;
+    flex: 3 3 600px;
     box-sizing: border-box;
 }
 .EmptyHotelScroll{
