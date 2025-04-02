@@ -8,6 +8,8 @@
 }
 .viewhotel_div{
     flex: 3 1 800px;
+    display: flex;
+    overflow: hidden;
 }
 @media (max-width:1115px) {
     .main{

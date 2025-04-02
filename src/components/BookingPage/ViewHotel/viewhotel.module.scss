@@ -3,7 +3,14 @@
 .hotel_model,
 .hotel_img{
     width: 100%;
-    height: 92vh;
+    flex: 1;
+    position: relative;
+}
+.carouselSliders{
+    position: absolute;
+    bottom: 30px;
+    color: white;
+    font-size: 3rem;
 }
 .viewhotel_hotel_model__0rt47{
     position: relative;
